@@ -1,0 +1,693 @@
+[2026-06-10T19:39:27.019+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: scraping_pipeline.scrape_fsac.univh2c.ma manual__2026-06-10T19:30:30.802964+00:00 [queued]>
+[2026-06-10T19:39:27.092+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: scraping_pipeline.scrape_fsac.univh2c.ma manual__2026-06-10T19:30:30.802964+00:00 [queued]>
+[2026-06-10T19:39:27.098+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2026-06-10T19:39:27.187+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_fsac.univh2c.ma> on 2026-06-10 19:30:30.802964+00:00
+[2026-06-10T19:39:27.207+0000] {standard_task_runner.py:60} INFO - Started process 195 to run task
+[2026-06-10T19:39:27.240+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'scraping_pipeline', 'scrape_fsac.univh2c.ma', 'manual__2026-06-10T19:30:30.802964+00:00', '--job-id', '69', '--raw', '--subdir', 'DAGS_FOLDER/01_scraping_dag.py', '--cfg-path', '/tmp/tmp_hsy1tyy']
+[2026-06-10T19:39:27.258+0000] {standard_task_runner.py:88} INFO - Job 69: Subtask scrape_fsac.univh2c.ma
+[2026-06-10T19:39:27.731+0000] {task_command.py:423} INFO - Running <TaskInstance: scraping_pipeline.scrape_fsac.univh2c.ma manual__2026-06-10T19:30:30.802964+00:00 [running]> on host 83dc73531537
+[2026-06-10T19:39:28.936+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='scraping_pipeline' AIRFLOW_CTX_TASK_ID='scrape_fsac.univh2c.ma' AIRFLOW_CTX_EXECUTION_DATE='2026-06-10T19:30:30.802964+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-10T19:30:30.802964+00:00'
+[2026-06-10T19:39:32.234+0000] {logging_mixin.py:188} INFO - [DEBUG] Démarrage scraping avec Playwright pour fsac.univh2c.ma depuis https://fsac.univh2c.ma/front/index.html, profondeur max 3
+[2026-06-10T19:39:59.016+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/index.html (depth 0)
+[2026-06-10T19:40:15.130+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=0/fsac.univh2c.ma_front_index.html.html to raw-web-html
+[2026-06-10T19:40:15.147+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=0/fsac.univh2c.ma_front_index.html.html
+[2026-06-10T19:40:15.965+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/cookies.png
+[2026-06-10T19:40:15.978+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/tabs.html?page=formations
+[2026-06-10T19:40:15.980+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/Chatbot/project/icone_chatbot.jpg
+[2026-06-10T19:40:15.981+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/Chatbot/project/styles.css
+[2026-06-10T19:40:15.985+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/tabs.html?page=departements
+[2026-06-10T19:40:15.992+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/electronique.jpg
+[2026-06-10T19:40:16.013+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/Docs/attachments/1181/img/1181-1780644753.jpg
+[2026-06-10T19:40:16.014+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/tabs.html?page=presentation
+[2026-06-10T19:40:16.015+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/css/style4.css
+[2026-06-10T19:40:16.017+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/recruts.html
+[2026-06-10T19:40:16.021+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/Docs/attachments/1183/img/1183-1780646066.jpg
+[2026-06-10T19:40:16.025+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/Docs/attachments/1182/img/1182-1780645077.jpg
+[2026-06-10T19:40:16.030+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/FSAC_mini.png
+[2026-06-10T19:40:16.078+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/tabs.html?page=espace_etu
+[2026-06-10T19:40:16.105+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/event.html
+[2026-06-10T19:40:16.118+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/contact.html
+[2026-06-10T19:40:16.133+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/info.jpg
+[2026-06-10T19:40:16.154+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/logistic.jpg
+[2026-06-10T19:40:16.161+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/favicon.ico
+[2026-06-10T19:40:16.215+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/events.html
+[2026-06-10T19:40:16.221+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/annonces.html
+[2026-06-10T19:40:16.227+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/recrut.html?p=7
+[2026-06-10T19:40:16.246+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/Docs/attachments/1185/img/1185-1780920420.jpg
+[2026-06-10T19:40:16.272+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/Chatbot/project/action.js
+[2026-06-10T19:40:16.277+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/js/callWS.js
+[2026-06-10T19:40:16.301+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/automotive.jpg
+[2026-06-10T19:40:16.305+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/tabs.html?page=recherche
+[2026-06-10T19:40:16.306+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/analytics.png
+[2026-06-10T19:40:16.312+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/recrut.html?p=0
+[2026-06-10T19:40:16.315+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:40:16.326+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/annonce.html
+[2026-06-10T19:40:16.331+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/btp.jpg
+[2026-06-10T19:40:16.334+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/Docs/attachments/1184/img/1184-1780647096.jpg
+[2026-06-10T19:40:16.340+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:40:16.348+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/js/slider2.js
+[2026-06-10T19:40:16.349+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/energy.jpg
+[2026-06-10T19:40:16.351+0000] {logging_mixin.py:188} INFO - [DEBUG] 36 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/index.html
+[2026-06-10T19:40:17.355+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/cookies.png (depth 1)
+[2026-06-10T19:40:20.941+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/45ca43863f20e1564fe4c93f9ded49df.png to raw-images
+[2026-06-10T19:40:20.944+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/45ca43863f20e1564fe4c93f9ded49df.png
+[2026-06-10T19:40:21.945+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/tabs.html?page=formations (depth 1)
+[2026-06-10T19:40:36.668+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html to raw-web-html
+[2026-06-10T19:40:36.707+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html
+[2026-06-10T19:40:37.848+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (MI)/Filières_Informatique_TC_MI_S1-S4.pdf
+[2026-06-10T19:40:37.863+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/Docs/json_db/script.js
+[2026-06-10T19:40:37.977+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/EEAII-LP.pdf
+[2026-06-10T19:40:38.122+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/GGT.pdf
+[2026-06-10T19:40:38.351+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMC.pdf
+[2026-06-10T19:40:38.360+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/GAMUR.pdf
+[2026-06-10T19:40:38.382+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (MI)/Filière_Administration_des_Systèmes.pdf
+[2026-06-10T19:40:38.387+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=espace_etu
+[2026-06-10T19:40:38.401+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filière_Géosciences.pdf
+[2026-06-10T19:40:38.406+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/IAQHSE.pdf
+[2026-06-10T19:40:38.416+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/contact.html
+[2026-06-10T19:40:38.423+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/favicon.ico
+[2026-06-10T19:40:38.435+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Physique/Filière_Matériaux_et_energie.pdf
+[2026-06-10T19:40:38.438+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/AASRI.pdf
+[2026-06-10T19:40:38.450+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Chimie/Filière_Matériaux_Organique_et_inorganique.pdf
+[2026-06-10T19:40:38.460+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/BD2C.pdf
+[2026-06-10T19:40:38.476+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Math/Organisation_filières_TC_MI.pdf
+[2026-06-10T19:40:38.477+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Organisation_Filières_Informatique_MI_Informatique_Appliquée.pdf
+[2026-06-10T19:40:38.490+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/IDC.pdf
+[2026-06-10T19:40:38.507+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/MA.pdf
+[2026-06-10T19:40:38.525+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/MEEAII.pdf
+[2026-06-10T19:40:38.537+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/GESE.pdf
+[2026-06-10T19:40:38.604+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:40:38.615+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMA.pdf
+[2026-06-10T19:40:38.622+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filières Biologie/Organisation_Filières_TC_BG.pdf
+[2026-06-10T19:40:38.649+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSTU.pdf
+[2026-06-10T19:40:38.664+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/EMGBR.pdf
+[2026-06-10T19:40:38.669+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/SBQ.pdf
+[2026-06-10T19:40:38.675+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filière_Excellence_CSNM_2026.pdf
+[2026-06-10T19:40:38.680+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/MNSA.pdf
+[2026-06-10T19:40:38.682+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (IA)/Filière_Cybersécurité.pdf
+[2026-06-10T19:40:38.685+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/DI.pdf
+[2026-06-10T19:40:38.700+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Physique/Filière_Génie_électrique_(GE).pdf
+[2026-06-10T19:40:38.705+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Math/Filière_Statistiques_et_Aide_à_la_Décision.pdf
+[2026-06-10T19:40:38.749+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filières Biologie/Filière_Pharmacologie_et_Développement_Molécules_(PDM).pdf
+[2026-06-10T19:40:38.754+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/BISD.pdf
+[2026-06-10T19:40:38.765+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/CCQFI.pdf
+[2026-06-10T19:40:38.774+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/MSM.pdf
+[2026-06-10T19:40:38.782+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Chimie/Filières_Chimie_TC_PC_S1-S4.pdf
+[2026-06-10T19:40:38.790+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/GIL.pdf
+[2026-06-10T19:40:38.802+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (IA)/Filière_Ingénierie_Logicielle.pdf
+[2026-06-10T19:40:38.815+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Chimie/Filière_Gestion_des_Effluents_liquides_et_solides.pdf
+[2026-06-10T19:40:38.825+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/RCC.pdf
+[2026-06-10T19:40:38.833+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/MISPP.pdf
+[2026-06-10T19:40:38.849+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Math/Filière_Codage_et_Cryptographie.pdf
+[2026-06-10T19:40:38.854+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (MI)/Filière_Développement_informatique.pdf
+[2026-06-10T19:40:38.861+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/DWM.pdf
+[2026-06-10T19:40:38.870+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/PHEI.pdf
+[2026-06-10T19:40:38.883+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/IIIA.pdf
+[2026-06-10T19:40:38.890+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filières Biologie/Filière_Bio-Analyses_Médicales.pdf
+[2026-06-10T19:40:38.897+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/SSB.pdf
+[2026-06-10T19:40:38.901+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/FS&DEVOPS.pdf
+[2026-06-10T19:40:38.931+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Math/Filières_Mathématiques_TC_MI.pdf
+[2026-06-10T19:40:38.936+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Chimie/Filière_Chimie_Analytique_Contrôle_Qualité.pdf
+[2026-06-10T19:40:38.981+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/EEAII.pdf
+[2026-06-10T19:40:38.983+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=departements
+[2026-06-10T19:40:38.997+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/GL.pdf
+[2026-06-10T19:40:38.999+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/whatsapp.png
+[2026-06-10T19:40:39.012+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/DAISI.pdf
+[2026-06-10T19:40:39.036+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/BIMAE.pdf
+[2026-06-10T19:40:39.038+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/BD2C.pdf
+[2026-06-10T19:40:39.044+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/MCC.pdf
+[2026-06-10T19:40:39.047+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Chimie/Filière_Formulation_des_Produits_industriels.pdf
+[2026-06-10T19:40:39.050+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=presentation
+[2026-06-10T19:40:39.052+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (IA)/Filières_Informatique_appliquée_S1-S4.pdf
+[2026-06-10T19:40:39.055+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Physique/Filière_Energies_Renouvelables_(EREE).pdf
+[2026-06-10T19:40:39.063+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMP.pdf
+[2026-06-10T19:40:39.065+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/css/style4.css
+[2026-06-10T19:40:39.066+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filières Biologie/Filière_Biologie_et_Technologie.pdf
+[2026-06-10T19:40:39.067+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/PE/PE_CSNM.pdf
+[2026-06-10T19:40:39.076+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/LC.pdf
+[2026-06-10T19:40:39.078+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Organisation_Filières_TC_Physique_Chimie.pdf
+[2026-06-10T19:40:39.082+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filières Biologie/Filière_Biotechnologie_et_Environnement.pdf
+[2026-06-10T19:40:39.083+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/EREE.pdf
+[2026-06-10T19:40:39.092+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/LGA.pdf
+[2026-06-10T19:40:39.093+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/GL.pdf
+[2026-06-10T19:40:39.095+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMI.pdf
+[2026-06-10T19:40:39.098+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSV.pdf
+[2026-06-10T19:40:39.109+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filières Biologie/Filières_Biologie_TC_BG_(S1-S4).pdf
+[2026-06-10T19:40:39.110+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Math/Filière_Analyse_Mathématique.pdf
+[2026-06-10T19:40:39.113+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/CAIE.pdf
+[2026-06-10T19:40:39.118+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=recherche
+[2026-06-10T19:40:39.123+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/ISI.pdf
+[2026-06-10T19:40:39.132+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Math/Filières_Maths_TC_MI_S1_S4.pdf
+[2026-06-10T19:40:39.141+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:40:39.143+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/GC.pdf
+[2026-06-10T19:40:39.145+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Math/Filière_Calcul_Scientifique_et_Optimisation.pdf
+[2026-06-10T19:40:39.149+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/MI.pdf
+[2026-06-10T19:40:39.156+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/TMBTP.pdf
+[2026-06-10T19:40:39.158+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/getTabs.js
+[2026-06-10T19:40:39.160+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/LSI.pdf
+[2026-06-10T19:40:39.168+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Physique/Filière_Dosimétrie.pdf
+[2026-06-10T19:40:39.169+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/ASBDR.pdf
+[2026-06-10T19:40:39.171+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Physique/Filières_de_Physique_TC_PC_S1-S4.pdf
+[2026-06-10T19:40:39.173+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/IM.pdf
+[2026-06-10T19:40:39.184+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LPU/pieces.pdf
+[2026-06-10T19:40:39.187+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC_mini.png
+[2026-06-10T19:40:39.188+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/MAA.pdf
+[2026-06-10T19:40:39.193+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/IER.pdf
+[2026-06-10T19:40:39.230+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Physique/Filière_Ingénierie_en_mécanique_et_energétique_(IME).pdf
+[2026-06-10T19:40:39.241+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MR/M_CSNM.pdf
+[2026-06-10T19:40:39.246+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières_Informatique_(MI_IA).pdf
+[2026-06-10T19:40:39.254+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/MSU/MSI.pdf
+[2026-06-10T19:40:39.266+0000] {logging_mixin.py:188} INFO - [DEBUG] 103 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/tabs.html?page=formations
+[2026-06-10T19:40:40.272+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/Chatbot/project/icone_chatbot.jpg (depth 1)
+[2026-06-10T19:40:40.692+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/ef8b5af7246c085fcb0b1b6377e37184.jpg to raw-images
+[2026-06-10T19:40:40.694+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/ef8b5af7246c085fcb0b1b6377e37184.jpg
+[2026-06-10T19:40:41.730+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/Chatbot/project/styles.css (depth 1)
+[2026-06-10T19:40:44.041+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_Chatbot_project_styles.css.html to raw-web-html
+[2026-06-10T19:40:44.042+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_Chatbot_project_styles.css.html
+[2026-06-10T19:40:44.488+0000] {logging_mixin.py:188} INFO - [DEBUG] 0 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/Chatbot/project/styles.css
+[2026-06-10T19:40:45.512+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/tabs.html?page=departements (depth 1)
+[2026-06-10T19:40:47.227+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html to raw-web-html
+[2026-06-10T19:40:47.228+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html
+[2026-06-10T19:40:47.354+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/getTabs.js
+[2026-06-10T19:40:47.355+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=presentation
+[2026-06-10T19:40:47.357+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMP.pdf
+[2026-06-10T19:40:47.358+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/css/style4.css
+[2026-06-10T19:40:47.359+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMC.pdf
+[2026-06-10T19:40:47.360+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC_mini.png
+[2026-06-10T19:40:47.364+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=espace_etu
+[2026-06-10T19:40:47.366+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/contact.html
+[2026-06-10T19:40:47.368+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/favicon.ico
+[2026-06-10T19:40:47.378+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/photos/maanan.jpeg
+[2026-06-10T19:40:47.380+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMI.pdf
+[2026-06-10T19:40:47.381+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSV.pdf
+[2026-06-10T19:40:47.383+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=recherche
+[2026-06-10T19:40:47.384+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:40:47.386+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:40:47.387+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/photos/avatar.JPG
+[2026-06-10T19:40:47.391+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/photos/dakir.jpeg
+[2026-06-10T19:40:47.394+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMA.pdf
+[2026-06-10T19:40:47.403+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSTU.pdf
+[2026-06-10T19:40:47.405+0000] {logging_mixin.py:188} INFO - [DEBUG] 19 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/tabs.html?page=departements
+[2026-06-10T19:40:48.411+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/electronique.jpg (depth 1)
+[2026-06-10T19:40:48.516+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/23f8d790fd1fe802936b99729a21bf5d.jpg to raw-images
+[2026-06-10T19:40:48.517+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/23f8d790fd1fe802936b99729a21bf5d.jpg
+[2026-06-10T19:40:49.518+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/Docs/attachments/1181/img/1181-1780644753.jpg (depth 1)
+[2026-06-10T19:40:49.801+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/ba3d37216a63d582184799e1049879b9.jpg to raw-images
+[2026-06-10T19:40:49.802+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/ba3d37216a63d582184799e1049879b9.jpg
+[2026-06-10T19:40:50.805+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/tabs.html?page=presentation (depth 1)
+[2026-06-10T19:40:51.937+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html to raw-web-html
+[2026-06-10T19:40:51.938+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html
+[2026-06-10T19:40:52.001+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/getTabs.js
+[2026-06-10T19:40:52.002+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/photos/cita.jpg
+[2026-06-10T19:40:52.003+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/css/style4.css
+[2026-06-10T19:40:52.004+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fsac/panoramic.jpg
+[2026-06-10T19:40:52.004+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fsac/Organigramme.png
+[2026-06-10T19:40:52.005+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/photos/ben.jpg
+[2026-06-10T19:40:52.006+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC_mini.png
+[2026-06-10T19:40:52.007+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=espace_etu
+[2026-06-10T19:40:52.008+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/photos/soukri.jpg
+[2026-06-10T19:40:52.009+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/contact.html
+[2026-06-10T19:40:52.010+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/favicon.ico
+[2026-06-10T19:40:52.011+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/loi_00_01_arabe.doc
+[2026-06-10T19:40:52.013+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/photos/miyara2.jpg
+[2026-06-10T19:40:52.014+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=recherche
+[2026-06-10T19:40:52.017+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:40:52.018+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/dispositions_reglementaires_arabe.doc
+[2026-06-10T19:40:52.019+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:40:52.020+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/photos/avatar.JPG
+[2026-06-10T19:40:52.021+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/conseil_discipline_Ar.pdf
+[2026-06-10T19:40:52.022+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/Décret_enseignement_distance_AR.pdf
+[2026-06-10T19:40:52.022+0000] {logging_mixin.py:188} INFO - [DEBUG] 20 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/tabs.html?page=presentation
+[2026-06-10T19:40:53.025+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/css/style4.css (depth 1)
+[2026-06-10T19:40:55.841+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_css_style4.css.html to raw-web-html
+[2026-06-10T19:40:55.854+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_css_style4.css.html
+[2026-06-10T19:40:56.612+0000] {logging_mixin.py:188} INFO - [DEBUG] 0 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/css/style4.css
+[2026-06-10T19:40:57.617+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/recruts.html (depth 1)
+[2026-06-10T19:40:59.908+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_recruts.html.html to raw-web-html
+[2026-06-10T19:40:59.926+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_recruts.html.html
+[2026-06-10T19:41:01.299+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/recrut.html?p=4
+[2026-06-10T19:41:01.300+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/356-1690195621.pdf
+[2026-06-10T19:41:01.300+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/Avis-426.pdf
+[2026-06-10T19:41:01.301+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/356-1689845603.pdf
+[2026-06-10T19:41:01.302+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/Avis-650.pdf
+[2026-06-10T19:41:01.302+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/recrut.html?p=3
+[2026-06-10T19:41:01.303+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC_mini.png
+[2026-06-10T19:41:01.303+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=espace_etu
+[2026-06-10T19:41:01.304+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/contact.html
+[2026-06-10T19:41:01.304+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/favicon.ico
+[2026-06-10T19:41:01.305+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/356-1689605315.pdf
+[2026-06-10T19:41:01.305+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/recrut.html?p=7
+[2026-06-10T19:41:01.306+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/356-1690195601.pdf
+[2026-06-10T19:41:01.307+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/recrut.html?p=6
+[2026-06-10T19:41:01.307+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/callWS.js
+[2026-06-10T19:41:01.308+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/356-1689845568.pdf
+[2026-06-10T19:41:01.308+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/recrut.html?p=1
+[2026-06-10T19:41:01.309+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=recherche
+[2026-06-10T19:41:01.310+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/recrut.html?p=0
+[2026-06-10T19:41:01.310+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:41:01.311+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/recrut.html?p=2
+[2026-06-10T19:41:01.311+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:41:01.312+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/356-1689948304.pdf
+[2026-06-10T19:41:01.312+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/356-1690018952.pdf
+[2026-06-10T19:41:01.313+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/recrut.html?p=5
+[2026-06-10T19:41:01.314+0000] {logging_mixin.py:188} INFO - [DEBUG] 25 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/recruts.html
+[2026-06-10T19:41:02.315+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/Docs/attachments/1183/img/1183-1780646066.jpg (depth 1)
+[2026-06-10T19:41:02.490+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/e274eff6a802dfeeba114cf1b2f4eb88.jpg to raw-images
+[2026-06-10T19:41:02.492+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/e274eff6a802dfeeba114cf1b2f4eb88.jpg
+[2026-06-10T19:41:03.493+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/Docs/attachments/1182/img/1182-1780645077.jpg (depth 1)
+[2026-06-10T19:41:05.116+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/b5690261fa00c9ceb05b3dfc9674d06d.jpg to raw-images
+[2026-06-10T19:41:05.120+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/b5690261fa00c9ceb05b3dfc9674d06d.jpg
+[2026-06-10T19:41:06.123+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/FSAC_mini.png (depth 1)
+[2026-06-10T19:41:06.230+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/0eb916265213e61737ba8f92509910b7.png to raw-images
+[2026-06-10T19:41:06.231+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/0eb916265213e61737ba8f92509910b7.png
+[2026-06-10T19:41:07.233+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/tabs.html?page=espace_etu (depth 1)
+[2026-06-10T19:41:08.251+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html to raw-web-html
+[2026-06-10T19:41:08.251+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html
+[2026-06-10T19:41:08.327+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/getTabs.js
+[2026-06-10T19:41:08.328+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/Procédure réclamation.pdf
+[2026-06-10T19:41:08.329+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/Fiche réinscipron LP.pdf
+[2026-06-10T19:41:08.330+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/Fiche réinscipron Master.pdf
+[2026-06-10T19:41:08.333+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/apps/subscription_master.png
+[2026-06-10T19:41:08.334+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/formulaire demande de retrait de diplômes et attestations- Cycle Licence.docx
+[2026-06-10T19:41:08.339+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SMC_S3_16_09_2022.pdf
+[2026-06-10T19:41:08.342+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SMPC_S1_16_09_2022.pdf
+[2026-06-10T19:41:08.346+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SMP_S3_16_09_2022.pdf
+[2026-06-10T19:41:08.349+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/Guides_Campus_Connecte.pdf
+[2026-06-10T19:41:08.351+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/FORMULAIRE DE DEMANDE DE DEROGATION_AUTOMNE.docx
+[2026-06-10T19:41:08.352+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_STU_S5_16_09_2022.pdf
+[2026-06-10T19:41:08.353+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/Convention de stage cycle Master.pdf
+[2026-06-10T19:41:08.354+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SMI_S5_19_09_2022.pdf
+[2026-06-10T19:41:08.355+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/contact.html
+[2026-06-10T19:41:08.356+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/CNPN_Licence.pdf
+[2026-06-10T19:41:08.357+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/Formulaire de demande deBac N-2.docx
+[2026-06-10T19:41:08.358+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/favicon.ico
+[2026-06-10T19:41:08.359+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/Guide_Etudiants_ FSAC A5.pdf
+[2026-06-10T19:41:08.360+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SV_S5_16_09_2022.pdf
+[2026-06-10T19:41:08.360+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/apps/resubscibe_LF.png
+[2026-06-10T19:41:08.361+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=recherche
+[2026-06-10T19:41:08.362+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_STU_S3_16_09_2022.pdf
+[2026-06-10T19:41:08.363+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SMI_S3_19_09_2022.pdf
+[2026-06-10T19:41:08.364+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:41:08.365+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/Convention de stage cycle licence.pdf
+[2026-06-10T19:41:08.366+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/CNPN_Doctorat.pdf
+[2026-06-10T19:41:08.367+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/Formulaire de demande de transfert inscription.docx
+[2026-06-10T19:41:08.368+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SMA_S5_19_09_2022.pdf
+[2026-06-10T19:41:08.369+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SVTU_S1_20_09_2022.pdf
+[2026-06-10T19:41:08.370+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/Réglements_Eudes_Normes complémentaires.pdf
+[2026-06-10T19:41:08.370+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SMC_S5_16_09_2022.pdf
+[2026-06-10T19:41:08.371+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SMA_S3_19_09_2022.pdf
+[2026-06-10T19:41:08.372+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SV_S3_16_09_2022.pdf
+[2026-06-10T19:41:08.372+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:41:08.373+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SMIA_S1_19_09_2022.pdf
+[2026-06-10T19:41:08.374+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/apps/subscription_LP.png
+[2026-06-10T19:41:08.374+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/espace_etu/listes_SMP_S5_16_09_2022.pdf
+[2026-06-10T19:41:08.375+0000] {logging_mixin.py:188} INFO - [DEBUG] 38 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/tabs.html?page=espace_etu
+[2026-06-10T19:41:09.376+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/event.html (depth 1)
+[2026-06-10T19:41:24.311+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_event.html.html to raw-web-html
+[2026-06-10T19:41:24.357+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_event.html.html
+[2026-06-10T19:41:25.556+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/contact.html
+[2026-06-10T19:41:25.564+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/info.jpg
+[2026-06-10T19:41:25.580+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/logistic.jpg
+[2026-06-10T19:41:25.586+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/favicon.ico
+[2026-06-10T19:41:25.588+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/events.html
+[2026-06-10T19:41:25.589+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/annonces.html
+[2026-06-10T19:41:25.590+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/recrut.html?p=7
+[2026-06-10T19:41:25.591+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/Docs/attachments/1185/img/1185-1780920420.jpg
+[2026-06-10T19:41:25.592+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/Chatbot/project/action.js
+[2026-06-10T19:41:25.593+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/callWS.js
+[2026-06-10T19:41:25.605+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/automotive.jpg
+[2026-06-10T19:41:25.606+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=recherche
+[2026-06-10T19:41:25.607+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/analytics.png
+[2026-06-10T19:41:25.608+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/recrut.html?p=0
+[2026-06-10T19:41:25.608+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:41:25.609+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/annonce.html
+[2026-06-10T19:41:25.610+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/btp.jpg
+[2026-06-10T19:41:25.611+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/Docs/attachments/1184/img/1184-1780647096.jpg
+[2026-06-10T19:41:25.612+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:41:25.624+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/slider2.js
+[2026-06-10T19:41:25.630+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/energy.jpg
+[2026-06-10T19:41:25.640+0000] {logging_mixin.py:188} INFO - [DEBUG] 21 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/event.html
+[2026-06-10T19:41:26.645+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/contact.html (depth 1)
+[2026-06-10T19:41:36.241+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_contact.html.html to raw-web-html
+[2026-06-10T19:41:36.275+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_contact.html.html
+[2026-06-10T19:41:36.797+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/sending.gif
+[2026-06-10T19:41:36.834+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/callWS.js
+[2026-06-10T19:41:36.855+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:41:36.874+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/favicon.ico
+[2026-06-10T19:41:36.894+0000] {logging_mixin.py:188} INFO - [DEBUG] 4 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/contact.html
+[2026-06-10T19:41:37.910+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/info.jpg (depth 1)
+[2026-06-10T19:41:38.210+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/4eb763679a823196d110e20b574a868b.jpg to raw-images
+[2026-06-10T19:41:38.212+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/4eb763679a823196d110e20b574a868b.jpg
+[2026-06-10T19:41:39.230+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/logistic.jpg (depth 1)
+[2026-06-10T19:41:39.520+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/118f8ce32b126e238b3b0519fd4727bd.jpg to raw-images
+[2026-06-10T19:41:39.559+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/118f8ce32b126e238b3b0519fd4727bd.jpg
+[2026-06-10T19:41:40.581+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/favicon.ico (depth 1)
+[2026-06-10T19:41:41.306+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/dbe42b9a501c5905e2281a8e03d630ac.ico to raw-images
+[2026-06-10T19:41:41.307+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/dbe42b9a501c5905e2281a8e03d630ac.ico
+[2026-06-10T19:41:42.310+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/events.html (depth 1)
+[2026-06-10T19:41:47.328+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_events.html.html to raw-web-html
+[2026-06-10T19:41:47.335+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_events.html.html
+[2026-06-10T19:41:47.703+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/callWS.js
+[2026-06-10T19:41:47.713+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=recherche
+[2026-06-10T19:41:47.717+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:41:47.730+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:41:47.749+0000] {logging_mixin.py:188} INFO - [DEBUG] 4 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/events.html
+[2026-06-10T19:41:48.757+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/annonces.html (depth 1)
+[2026-06-10T19:41:49.982+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_annonces.html.html to raw-web-html
+[2026-06-10T19:41:49.985+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_annonces.html.html
+[2026-06-10T19:41:50.135+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/callWS.js
+[2026-06-10T19:41:50.136+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=recherche
+[2026-06-10T19:41:50.137+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:41:50.138+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/annonce.html
+[2026-06-10T19:41:50.140+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:41:50.142+0000] {logging_mixin.py:188} INFO - [DEBUG] 5 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/annonces.html
+[2026-06-10T19:41:51.143+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/recrut.html?p=7 (depth 1)
+[2026-06-10T19:41:52.595+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_recrut.html.html to raw-web-html
+[2026-06-10T19:41:52.596+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_recrut.html.html
+[2026-06-10T19:41:52.715+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/Docs/attachments/1185/img/1185-1780920420.jpg
+[2026-06-10T19:41:52.719+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/Chatbot/project/action.js
+[2026-06-10T19:41:52.721+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/callWS.js
+[2026-06-10T19:41:52.722+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/automotive.jpg
+[2026-06-10T19:41:52.723+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/tabs.html?page=recherche
+[2026-06-10T19:41:52.724+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/analytics.png
+[2026-06-10T19:41:52.725+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/recrut.html?p=0
+[2026-06-10T19:41:52.727+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:41:52.729+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/annonce.html
+[2026-06-10T19:41:52.734+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/btp.jpg
+[2026-06-10T19:41:52.736+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/Docs/attachments/1184/img/1184-1780647096.jpg
+[2026-06-10T19:41:52.737+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:41:52.738+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/slider2.js
+[2026-06-10T19:41:52.738+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/energy.jpg
+[2026-06-10T19:41:52.739+0000] {logging_mixin.py:188} INFO - [DEBUG] 14 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/recrut.html?p=7
+[2026-06-10T19:41:53.741+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/Docs/attachments/1185/img/1185-1780920420.jpg (depth 1)
+[2026-06-10T19:41:53.993+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/67f90a759966482d3faa60e99e8bb6ba.jpg to raw-images
+[2026-06-10T19:41:53.994+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/67f90a759966482d3faa60e99e8bb6ba.jpg
+[2026-06-10T19:41:54.999+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/Chatbot/project/action.js (depth 1)
+[2026-06-10T19:41:56.041+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_Chatbot_project_action.js.html to raw-web-html
+[2026-06-10T19:41:56.042+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_Chatbot_project_action.js.html
+[2026-06-10T19:41:56.170+0000] {logging_mixin.py:188} INFO - [DEBUG] 0 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/Chatbot/project/action.js
+[2026-06-10T19:41:57.173+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/js/callWS.js (depth 1)
+[2026-06-10T19:42:00.087+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_js_callWS.js.html to raw-web-html
+[2026-06-10T19:42:00.106+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_js_callWS.js.html
+[2026-06-10T19:42:00.213+0000] {logging_mixin.py:188} INFO - [DEBUG] 0 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/js/callWS.js
+[2026-06-10T19:42:01.286+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/automotive.jpg (depth 1)
+[2026-06-10T19:42:03.450+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/82be88834ff396d3b6e73a1a542d7f64.jpg to raw-images
+[2026-06-10T19:42:03.453+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/82be88834ff396d3b6e73a1a542d7f64.jpg
+[2026-06-10T19:42:04.470+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/tabs.html?page=recherche (depth 1)
+[2026-06-10T19:42:06.689+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html to raw-web-html
+[2026-06-10T19:42:06.690+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html
+[2026-06-10T19:42:06.809+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/recherche/Charte des Thèses.pdf
+[2026-06-10T19:42:06.815+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/getTabs.js
+[2026-06-10T19:42:06.816+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/docs/recherche/PROCEDURE_FORMULAIRE_HABILITATION_27-12-2017.pdf
+[2026-06-10T19:42:06.821+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:42:06.830+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:42:06.834+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/photos/avatar.JPG
+[2026-06-10T19:42:06.838+0000] {logging_mixin.py:188} INFO - [DEBUG] 6 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/tabs.html?page=recherche
+[2026-06-10T19:42:07.843+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/analytics.png (depth 1)
+[2026-06-10T19:42:07.959+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/36c94321209cb24fa02a2f6835cee407.png to raw-images
+[2026-06-10T19:42:07.960+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/36c94321209cb24fa02a2f6835cee407.png
+[2026-06-10T19:42:08.963+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/recrut.html?p=0 (depth 1)
+[2026-06-10T19:42:11.276+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_recrut.html.html to raw-web-html
+[2026-06-10T19:42:11.277+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_recrut.html.html
+[2026-06-10T19:42:11.331+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg
+[2026-06-10T19:42:11.332+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/annonce.html
+[2026-06-10T19:42:11.334+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/btp.jpg
+[2026-06-10T19:42:11.335+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/Docs/attachments/1184/img/1184-1780647096.jpg
+[2026-06-10T19:42:11.336+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:42:11.337+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/slider2.js
+[2026-06-10T19:42:11.337+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/energy.jpg
+[2026-06-10T19:42:11.338+0000] {logging_mixin.py:188} INFO - [DEBUG] 7 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/recrut.html?p=0
+[2026-06-10T19:42:12.474+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/FSAC LOGO.jpg (depth 1)
+[2026-06-10T19:42:13.159+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/9bbca4941d2f7c2f6a01ba64de4ece1d.jpg to raw-images
+[2026-06-10T19:42:13.160+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/9bbca4941d2f7c2f6a01ba64de4ece1d.jpg
+[2026-06-10T19:42:14.162+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/annonce.html (depth 1)
+[2026-06-10T19:42:15.248+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_annonce.html.html to raw-web-html
+[2026-06-10T19:42:15.249+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_annonce.html.html
+[2026-06-10T19:42:15.303+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/btp.jpg
+[2026-06-10T19:42:15.304+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/Docs/attachments/1184/img/1184-1780647096.jpg
+[2026-06-10T19:42:15.305+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:42:15.306+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/slider2.js
+[2026-06-10T19:42:15.306+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/fc/energy.jpg
+[2026-06-10T19:42:15.307+0000] {logging_mixin.py:188} INFO - [DEBUG] 5 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/annonce.html
+[2026-06-10T19:42:16.310+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/btp.jpg (depth 1)
+[2026-06-10T19:42:17.122+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/86e2f79dafa82e645e32330e29d2dc47.jpg to raw-images
+[2026-06-10T19:42:17.123+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/86e2f79dafa82e645e32330e29d2dc47.jpg
+[2026-06-10T19:42:18.126+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/Docs/attachments/1184/img/1184-1780647096.jpg (depth 1)
+[2026-06-10T19:42:25.474+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/b32154c71a3ec36d1f6d74717dbc3313.jpg to raw-images
+[2026-06-10T19:42:25.487+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/b32154c71a3ec36d1f6d74717dbc3313.jpg
+[2026-06-10T19:42:26.489+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/js/global.js (depth 1)
+[2026-06-10T19:42:27.911+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_js_global.js.html to raw-web-html
+[2026-06-10T19:42:27.915+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_js_global.js.html
+[2026-06-10T19:42:27.950+0000] {logging_mixin.py:188} INFO - [DEBUG] 0 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T19:42:28.952+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/js/slider2.js (depth 1)
+[2026-06-10T19:42:29.606+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_js_slider2.js.html to raw-web-html
+[2026-06-10T19:42:29.607+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_js_slider2.js.html
+[2026-06-10T19:42:29.642+0000] {logging_mixin.py:188} INFO - [DEBUG] 0 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/js/slider2.js
+[2026-06-10T19:42:30.644+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/energy.jpg (depth 1)
+[2026-06-10T19:42:30.798+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/b23861b1a0213acc3205d8a1b6d5ad9c.jpg to raw-images
+[2026-06-10T19:42:30.802+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/b23861b1a0213acc3205d8a1b6d5ad9c.jpg
+[2026-06-10T19:42:31.810+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (MI)/Filières_Informatique_TC_MI_S1-S4.pdf (depth 2)
+[2026-06-10T19:42:32.047+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/3e9fd409001169b1180524d775f2b353.pdf to raw-documents
+[2026-06-10T19:42:32.050+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/3e9fd409001169b1180524d775f2b353.pdf
+[2026-06-10T19:42:33.053+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/Docs/json_db/script.js (depth 2)
+[2026-06-10T19:42:33.851+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=2/fsac.univh2c.ma_Docs_json_db_script.js.html to raw-web-html
+[2026-06-10T19:42:33.858+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=2/fsac.univh2c.ma_Docs_json_db_script.js.html
+[2026-06-10T19:42:33.923+0000] {logging_mixin.py:188} INFO - [DEBUG] 0 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/Docs/json_db/script.js
+[2026-06-10T19:42:34.924+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/EEAII-LP.pdf (depth 2)
+[2026-06-10T19:42:35.644+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/9745d64fafa5798a232c8cf703b43e2d.pdf to raw-documents
+[2026-06-10T19:42:35.645+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/9745d64fafa5798a232c8cf703b43e2d.pdf
+[2026-06-10T19:42:36.647+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/GGT.pdf (depth 2)
+[2026-06-10T19:42:38.239+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/a53a055159427899c5378e0886dba2ef.pdf to raw-documents
+[2026-06-10T19:42:38.240+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/a53a055159427899c5378e0886dba2ef.pdf
+[2026-06-10T19:42:39.244+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMC.pdf (depth 2)
+[2026-06-10T19:42:40.702+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/aea6c0492dcbdb0a2e9d836f4641d005.pdf to raw-documents
+[2026-06-10T19:42:40.713+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/aea6c0492dcbdb0a2e9d836f4641d005.pdf
+[2026-06-10T19:42:41.714+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/GAMUR.pdf (depth 2)
+[2026-06-10T19:42:42.823+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/ce8d7e00661f3c350fedff80948b250f.pdf to raw-documents
+[2026-06-10T19:42:42.824+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/ce8d7e00661f3c350fedff80948b250f.pdf
+[2026-06-10T19:42:43.826+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (MI)/Filière_Administration_des_Systèmes.pdf (depth 2)
+[2026-06-10T19:42:45.103+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/a0e25f48e774011362149ac7d1ff870d.pdf to raw-documents
+[2026-06-10T19:42:45.130+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/a0e25f48e774011362149ac7d1ff870d.pdf
+[2026-06-10T19:42:46.134+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filière_Géosciences.pdf (depth 2)
+[2026-06-10T19:42:50.008+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/4a7d5cbde00a4c3e9bddf3ff80ee500b.pdf to raw-documents
+[2026-06-10T19:42:50.011+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/4a7d5cbde00a4c3e9bddf3ff80ee500b.pdf
+[2026-06-10T19:42:51.013+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MSU/IAQHSE.pdf (depth 2)
+[2026-06-10T19:42:52.807+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/fbc3993b1ae2159ec5e01ba0f59369fc.pdf to raw-documents
+[2026-06-10T19:42:52.808+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/fbc3993b1ae2159ec5e01ba0f59369fc.pdf
+[2026-06-10T19:42:53.811+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Physique/Filière_Matériaux_et_energie.pdf (depth 2)
+[2026-06-10T19:42:54.131+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/87c94e03e8338b53b9137509bcbcab8d.pdf to raw-documents
+[2026-06-10T19:42:54.132+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/87c94e03e8338b53b9137509bcbcab8d.pdf
+[2026-06-10T19:42:55.135+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/AASRI.pdf (depth 2)
+[2026-06-10T19:42:55.690+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/90fc8c695ed25bd602d1085e91416c6a.pdf to raw-documents
+[2026-06-10T19:42:55.691+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/90fc8c695ed25bd602d1085e91416c6a.pdf
+[2026-06-10T19:42:56.693+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Chimie/Filière_Matériaux_Organique_et_inorganique.pdf (depth 2)
+[2026-06-10T19:42:57.735+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/8c15729e1b2a2e856abd8ffedf7207a1.pdf to raw-documents
+[2026-06-10T19:42:57.740+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/8c15729e1b2a2e856abd8ffedf7207a1.pdf
+[2026-06-10T19:42:58.744+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MSU/BD2C.pdf (depth 2)
+[2026-06-10T19:42:59.203+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/2a0105a09480bdb3b53e4a15cd191af1.pdf to raw-documents
+[2026-06-10T19:42:59.204+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/2a0105a09480bdb3b53e4a15cd191af1.pdf
+[2026-06-10T19:43:00.206+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/Math/Organisation_filières_TC_MI.pdf (depth 2)
+[2026-06-10T19:43:00.335+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/b4fbbe35e52e707dd0673e681e925b74.pdf to raw-documents
+[2026-06-10T19:43:00.336+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/b4fbbe35e52e707dd0673e681e925b74.pdf
+[2026-06-10T19:43:01.338+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Organisation_Filières_Informatique_MI_Informatique_Appliquée.pdf (depth 2)
+[2026-06-10T19:43:01.472+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/17341037581e24f319ef55bf1fa2d420.pdf to raw-documents
+[2026-06-10T19:43:01.473+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/17341037581e24f319ef55bf1fa2d420.pdf
+[2026-06-10T19:43:02.478+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MSU/IDC.pdf (depth 2)
+[2026-06-10T19:43:02.843+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/60a4239c0b043f72fe87b2e7c5954d50.pdf to raw-documents
+[2026-06-10T19:43:02.846+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/60a4239c0b043f72fe87b2e7c5954d50.pdf
+[2026-06-10T19:43:03.850+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MR/MA.pdf (depth 2)
+[2026-06-10T19:43:06.744+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/b0229c788bbb3e5d41866a3bd463f98d.pdf to raw-documents
+[2026-06-10T19:43:06.746+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/b0229c788bbb3e5d41866a3bd463f98d.pdf
+[2026-06-10T19:43:07.748+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MSU/MEEAII.pdf (depth 2)
+[2026-06-10T19:43:08.084+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/0567d2805ba7471902d8a38ed26fada1.pdf to raw-documents
+[2026-06-10T19:43:08.085+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/0567d2805ba7471902d8a38ed26fada1.pdf
+[2026-06-10T19:43:09.087+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/GESE.pdf (depth 2)
+[2026-06-10T19:43:09.521+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/74f0b0f25df19100028322d6f5fa40e6.pdf to raw-documents
+[2026-06-10T19:43:09.522+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/74f0b0f25df19100028322d6f5fa40e6.pdf
+[2026-06-10T19:43:10.524+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMA.pdf (depth 2)
+[2026-06-10T19:43:12.301+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/f9cc6bd3c16d5e2a8da5f140e728a0a5.pdf to raw-documents
+[2026-06-10T19:43:12.303+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/f9cc6bd3c16d5e2a8da5f140e728a0a5.pdf
+[2026-06-10T19:43:13.306+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filières Biologie/Organisation_Filières_TC_BG.pdf (depth 2)
+[2026-06-10T19:43:13.403+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/d8a62890317d3af05f14887b94da4f63.pdf to raw-documents
+[2026-06-10T19:43:13.403+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/d8a62890317d3af05f14887b94da4f63.pdf
+[2026-06-10T19:43:14.405+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSTU.pdf (depth 2)
+[2026-06-10T19:43:16.499+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/d423cb1ab56af05c44aca74c783e6acd.pdf to raw-documents
+[2026-06-10T19:43:16.512+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/d423cb1ab56af05c44aca74c783e6acd.pdf
+[2026-06-10T19:43:17.514+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MR/EMGBR.pdf (depth 2)
+[2026-06-10T19:43:17.692+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/f5764116505b57c7c0099db145bfb3e0.pdf to raw-documents
+[2026-06-10T19:43:17.693+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/f5764116505b57c7c0099db145bfb3e0.pdf
+[2026-06-10T19:43:18.695+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MR/SBQ.pdf (depth 2)
+[2026-06-10T19:43:18.887+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/d7ca2d41839845bd1d82acbd7b0f7305.pdf to raw-documents
+[2026-06-10T19:43:18.892+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/d7ca2d41839845bd1d82acbd7b0f7305.pdf
+[2026-06-10T19:43:19.895+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filière_Excellence_CSNM_2026.pdf (depth 2)
+[2026-06-10T19:43:20.198+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/5928c294fa9d43101f4c0edd26cd3dc4.pdf to raw-documents
+[2026-06-10T19:43:20.200+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/5928c294fa9d43101f4c0edd26cd3dc4.pdf
+[2026-06-10T19:43:21.203+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MR/MNSA.pdf (depth 2)
+[2026-06-10T19:43:24.113+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/c8e2ca8367f9c7866856affbad013452.pdf to raw-documents
+[2026-06-10T19:43:24.127+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/c8e2ca8367f9c7866856affbad013452.pdf
+[2026-06-10T19:43:25.134+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (IA)/Filière_Cybersécurité.pdf (depth 2)
+[2026-06-10T19:43:27.651+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/a9e62b3d704c88650842baa88bec5e46.pdf to raw-documents
+[2026-06-10T19:43:27.680+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/a9e62b3d704c88650842baa88bec5e46.pdf
+[2026-06-10T19:43:28.684+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/DI.pdf (depth 2)
+[2026-06-10T19:43:29.015+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/51bc430ed53c3c709b2f04b41e2fc270.pdf to raw-documents
+[2026-06-10T19:43:29.016+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/51bc430ed53c3c709b2f04b41e2fc270.pdf
+[2026-06-10T19:43:30.023+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Physique/Filière_Génie_électrique_(GE).pdf (depth 2)
+[2026-06-10T19:43:34.853+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/5962946422a2cb6c89ca0ea1af855c43.pdf to raw-documents
+[2026-06-10T19:43:34.885+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/5962946422a2cb6c89ca0ea1af855c43.pdf
+[2026-06-10T19:43:35.902+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/Math/Filière_Statistiques_et_Aide_à_la_Décision.pdf (depth 2)
+[2026-06-10T19:43:36.708+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/60d0d851ad133c0096f455dcf1b8ccb1.pdf to raw-documents
+[2026-06-10T19:43:36.725+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/60d0d851ad133c0096f455dcf1b8ccb1.pdf
+[2026-06-10T19:43:37.867+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filières Biologie/Filière_Pharmacologie_et_Développement_Molécules_(PDM).pdf (depth 2)
+[2026-06-10T19:43:38.681+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/bc86fec0b529610e23f2545cc052e8d8.pdf to raw-documents
+[2026-06-10T19:43:38.688+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/bc86fec0b529610e23f2545cc052e8d8.pdf
+[2026-06-10T19:43:39.692+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MSU/BISD.pdf (depth 2)
+[2026-06-10T19:43:40.447+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/82654038209a0c6c8cbcfa3dc50b46d5.pdf to raw-documents
+[2026-06-10T19:43:40.448+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/82654038209a0c6c8cbcfa3dc50b46d5.pdf
+[2026-06-10T19:43:41.451+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MSU/CCQFI.pdf (depth 2)
+[2026-06-10T19:43:43.044+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/b2fa83b68a230b69946f498f65915565.pdf to raw-documents
+[2026-06-10T19:43:43.054+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/b2fa83b68a230b69946f498f65915565.pdf
+[2026-06-10T19:43:44.056+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MSU/MSM.pdf (depth 2)
+[2026-06-10T19:43:44.612+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/c24a61b989b6c09cb4a6234bf8b2f68a.pdf to raw-documents
+[2026-06-10T19:43:44.613+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/c24a61b989b6c09cb4a6234bf8b2f68a.pdf
+[2026-06-10T19:43:45.621+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Chimie/Filières_Chimie_TC_PC_S1-S4.pdf (depth 2)
+[2026-06-10T19:43:45.939+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/ce5c4decbf5763cfd920ea307a7c695e.pdf to raw-documents
+[2026-06-10T19:43:45.940+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/ce5c4decbf5763cfd920ea307a7c695e.pdf
+[2026-06-10T19:43:46.942+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/GIL.pdf (depth 2)
+[2026-06-10T19:43:48.862+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/90a1cdbffc792e2dd3440c9a1a8b5799.pdf to raw-documents
+[2026-06-10T19:43:48.863+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/90a1cdbffc792e2dd3440c9a1a8b5799.pdf
+[2026-06-10T19:43:49.865+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (IA)/Filière_Ingénierie_Logicielle.pdf (depth 2)
+[2026-06-10T19:43:50.599+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/c85dbf331fc244d6da5760a5db7273a9.pdf to raw-documents
+[2026-06-10T19:43:50.606+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/c85dbf331fc244d6da5760a5db7273a9.pdf
+[2026-06-10T19:43:51.616+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Chimie/Filière_Gestion_des_Effluents_liquides_et_solides.pdf (depth 2)
+[2026-06-10T19:43:55.099+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/79ddad1cdce036b06cf1e9249081c576.pdf to raw-documents
+[2026-06-10T19:43:55.101+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/79ddad1cdce036b06cf1e9249081c576.pdf
+[2026-06-10T19:43:56.129+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/RCC.pdf (depth 2)
+[2026-06-10T19:43:56.696+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/8e808f0a4c2c46a586d31ae9be839978.pdf to raw-documents
+[2026-06-10T19:43:56.698+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/8e808f0a4c2c46a586d31ae9be839978.pdf
+[2026-06-10T19:43:57.700+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/MISPP.pdf (depth 2)
+[2026-06-10T19:43:57.994+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/3f4118f99e38e29cd513f86d50c48986.pdf to raw-documents
+[2026-06-10T19:43:57.995+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/3f4118f99e38e29cd513f86d50c48986.pdf
+[2026-06-10T19:43:58.998+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/Math/Filière_Codage_et_Cryptographie.pdf (depth 2)
+[2026-06-10T19:43:59.170+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/e74af1bb2c00f0751b02a9d693d8a1f2.pdf to raw-documents
+[2026-06-10T19:43:59.171+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/e74af1bb2c00f0751b02a9d693d8a1f2.pdf
+[2026-06-10T19:44:00.173+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (MI)/Filière_Développement_informatique.pdf (depth 2)
+[2026-06-10T19:44:00.303+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/846015e0126b36105acaa1fa9b8a2140.pdf to raw-documents
+[2026-06-10T19:44:00.304+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/846015e0126b36105acaa1fa9b8a2140.pdf
+[2026-06-10T19:44:01.306+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/DWM.pdf (depth 2)
+[2026-06-10T19:44:01.725+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/bb8be994797c6fe9b902a42b6eb3a3ed.pdf to raw-documents
+[2026-06-10T19:44:01.726+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/bb8be994797c6fe9b902a42b6eb3a3ed.pdf
+[2026-06-10T19:44:02.735+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MR/PHEI.pdf (depth 2)
+[2026-06-10T19:44:05.305+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/b66d26d336759fd3230cd8d41e258450.pdf to raw-documents
+[2026-06-10T19:44:05.311+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/b66d26d336759fd3230cd8d41e258450.pdf
+[2026-06-10T19:44:06.314+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MSU/IIIA.pdf (depth 2)
+[2026-06-10T19:44:07.069+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/069c6fb4296b68dcc3658a6a6ef0f3e3.pdf to raw-documents
+[2026-06-10T19:44:07.072+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/069c6fb4296b68dcc3658a6a6ef0f3e3.pdf
+[2026-06-10T19:44:08.080+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filières Biologie/Filière_Bio-Analyses_Médicales.pdf (depth 2)
+[2026-06-10T19:44:08.370+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/28b361cf3339113fe37cf5e0f9498c1e.pdf to raw-documents
+[2026-06-10T19:44:08.371+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/28b361cf3339113fe37cf5e0f9498c1e.pdf
+[2026-06-10T19:44:09.374+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MR/SSB.pdf (depth 2)
+[2026-06-10T19:44:11.540+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/a9b30d6da1ae48b4be2a9068c2364786.pdf to raw-documents
+[2026-06-10T19:44:11.542+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/a9b30d6da1ae48b4be2a9068c2364786.pdf
+[2026-06-10T19:44:12.740+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/FS&DEVOPS.pdf (depth 2)
+[2026-06-10T19:44:15.393+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/8a35555e886649aa63f642cdc4665378.pdf to raw-documents
+[2026-06-10T19:44:15.399+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/8a35555e886649aa63f642cdc4665378.pdf
+[2026-06-10T19:44:16.402+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/Math/Filières_Mathématiques_TC_MI.pdf (depth 2)
+[2026-06-10T19:44:17.297+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/84ce667fc1fcfc18f9413b811d562d4b.pdf to raw-documents
+[2026-06-10T19:44:17.301+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/84ce667fc1fcfc18f9413b811d562d4b.pdf
+[2026-06-10T19:44:18.304+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Chimie/Filière_Chimie_Analytique_Contrôle_Qualité.pdf (depth 2)
+[2026-06-10T19:44:18.646+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/6a479d76211df7d8701fbdade3b5aa7c.pdf to raw-documents
+[2026-06-10T19:44:18.648+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/6a479d76211df7d8701fbdade3b5aa7c.pdf
+[2026-06-10T19:44:19.652+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MR/EEAII.pdf (depth 2)
+[2026-06-10T19:44:19.809+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/20654d1e43ed73072e23874f7470b57c.pdf to raw-documents
+[2026-06-10T19:44:19.810+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/20654d1e43ed73072e23874f7470b57c.pdf
+[2026-06-10T19:44:20.812+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MR/GL.pdf (depth 2)
+[2026-06-10T19:44:20.963+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/55e68cbc093cff34f10361c5bb11c575.pdf to raw-documents
+[2026-06-10T19:44:20.964+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/55e68cbc093cff34f10361c5bb11c575.pdf
+[2026-06-10T19:44:21.966+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/whatsapp.png (depth 2)
+[2026-06-10T19:44:22.039+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/465bdd73ed0b1286f5a99447d0f67826.png to raw-images
+[2026-06-10T19:44:22.040+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/465bdd73ed0b1286f5a99447d0f67826.png
+[2026-06-10T19:44:23.042+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/DAISI.pdf (depth 2)
+[2026-06-10T19:44:25.114+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/f50a39e953b7370ca949663495ee3944.pdf to raw-documents
+[2026-06-10T19:44:25.118+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/f50a39e953b7370ca949663495ee3944.pdf
+[2026-06-10T19:44:26.121+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MSU/BIMAE.pdf (depth 2)
+[2026-06-10T19:44:27.037+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/3d3bc65a8033839fcdd68a712f0e522b.pdf to raw-documents
+[2026-06-10T19:44:27.039+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/3d3bc65a8033839fcdd68a712f0e522b.pdf
+[2026-06-10T19:44:28.043+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MR/BD2C.pdf (depth 2)
+[2026-06-10T19:44:28.091+0000] {logging_mixin.py:188} INFO - [ERROR] URL: https://fsac.univh2c.ma/front/docs/formations/MR/BD2C.pdf
+Error: 404 Client Error: Not Found for url: https://fsac.univh2c.ma/front/docs/formations/MR/BD2C.pdf
+Depth: 2
+[2026-06-10T19:44:28.116+0000] {logging_mixin.py:188} INFO - Uploaded errors/eebb44dacfd99d1c7b74d80d98051fe5.txt to raw-logs
+[2026-06-10T19:44:28.117+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MSU/MCC.pdf (depth 2)
+[2026-06-10T19:44:29.157+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/73033fd205acfa8b90762061791df050.pdf to raw-documents
+[2026-06-10T19:44:29.158+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/73033fd205acfa8b90762061791df050.pdf
+[2026-06-10T19:44:30.161+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Chimie/Filière_Formulation_des_Produits_industriels.pdf (depth 2)
+[2026-06-10T19:44:30.984+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/e5bea31acebf888ebed826a85c0d1bdb.pdf to raw-documents
+[2026-06-10T19:44:30.986+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/e5bea31acebf888ebed826a85c0d1bdb.pdf
+[2026-06-10T19:44:31.987+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/Info/Filières Info (IA)/Filières_Informatique_appliquée_S1-S4.pdf (depth 2)
+[2026-06-10T19:44:32.136+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/4900ef93eb21f68a2942a05d93aad3f3.pdf to raw-documents
+[2026-06-10T19:44:32.137+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/4900ef93eb21f68a2942a05d93aad3f3.pdf
+[2026-06-10T19:44:33.139+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Filières Physique/Filière_Energies_Renouvelables_(EREE).pdf (depth 2)
+[2026-06-10T19:44:35.486+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/5dd8cbcb17e21f5165cbd70196c701a1.pdf to raw-documents
+[2026-06-10T19:44:35.488+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/5dd8cbcb17e21f5165cbd70196c701a1.pdf
+[2026-06-10T19:44:36.490+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMP.pdf (depth 2)
+[2026-06-10T19:44:39.461+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/38dd0a8c59a01ea0d0eeb95d69d4b696.pdf to raw-documents
+[2026-06-10T19:44:39.478+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/38dd0a8c59a01ea0d0eeb95d69d4b696.pdf
+[2026-06-10T19:44:40.482+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filières Biologie/Filière_Biologie_et_Technologie.pdf (depth 2)
+[2026-06-10T19:44:41.380+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/ea222914650456f51198b0aa0c55d33f.pdf to raw-documents
+[2026-06-10T19:44:41.382+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/ea222914650456f51198b0aa0c55d33f.pdf
+[2026-06-10T19:44:42.385+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/PE/PE_CSNM.pdf (depth 2)
+[2026-06-10T19:44:42.962+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/596be897f86006c57e1adfcdba8c7889.pdf to raw-documents
+[2026-06-10T19:44:42.964+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/596be897f86006c57e1adfcdba8c7889.pdf
+[2026-06-10T19:44:43.966+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/LC.pdf (depth 2)
+[2026-06-10T19:44:47.271+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/e24bcf386151cb5285969a897fa23478.pdf to raw-documents
+[2026-06-10T19:44:47.272+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/e24bcf386151cb5285969a897fa23478.pdf
+[2026-06-10T19:44:48.275+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/PC/Organisation_Filières_TC_Physique_Chimie.pdf (depth 2)
+[2026-06-10T19:44:48.424+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/7201d3f10c02dd71b373800e477947c8.pdf to raw-documents
+[2026-06-10T19:44:48.426+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/7201d3f10c02dd71b373800e477947c8.pdf
+[2026-06-10T19:44:49.428+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LNG/BG/Filières Biologie/Filière_Biotechnologie_et_Environnement.pdf (depth 2)
+[2026-06-10T19:44:51.393+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/50d19b0c1415f255733033b31c73b24e.pdf to raw-documents
+[2026-06-10T19:44:51.394+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/50d19b0c1415f255733033b31c73b24e.pdf
+[2026-06-10T19:44:52.396+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MR/EREE.pdf (depth 2)
+[2026-06-10T19:44:52.443+0000] {logging_mixin.py:188} INFO - [ERROR] URL: https://fsac.univh2c.ma/front/docs/formations/MR/EREE.pdf
+Error: 404 Client Error: Not Found for url: https://fsac.univh2c.ma/front/docs/formations/MR/EREE.pdf
+Depth: 2
+[2026-06-10T19:44:52.471+0000] {logging_mixin.py:188} INFO - Uploaded errors/8d1dc2525daa8ba22be40eee18e41895.txt to raw-logs
+[2026-06-10T19:44:52.472+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LPU/LGA.pdf (depth 2)
+[2026-06-10T19:44:54.076+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/19b150d62f9268ce989b8421cadd167a.pdf to raw-documents
+[2026-06-10T19:44:54.077+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/19b150d62f9268ce989b8421cadd167a.pdf
+[2026-06-10T19:44:55.079+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/MSU/GL.pdf (depth 2)
+[2026-06-10T19:45:06.984+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/files/f83540f4cafe948ec6775ee8683d3b9f.pdf to raw-documents
+[2026-06-10T19:45:06.985+0000] {logging_mixin.py:188} INFO - [DEBUG] Document sauvegardé : fsac.univh2c.ma/files/f83540f4cafe948ec6775ee8683d3b9f.pdf
+[2026-06-10T19:45:07.988+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/docs/formations/LF/FlyerSMI.pdf (depth 2)
+[2026-06-10T19:45:22.346+0000] {job.py:213} ERROR - Job heartbeat got an exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1094, in _commit_impl
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 686, in do_commit
+psycopg2.OperationalError: server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/jobs/job.py", line 202, in heartbeat
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/api_internal/internal_api_call.py", line 114, in wrapper
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/utils/session.py", line 76, in wrapper
+  File "/home/airflow/.local/lib/python3.10/site-packages/airflow/jobs/job.py", line 351, in _update_heartbeat
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1454, in commit
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 839, in commit
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2469, in commit
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2659, in _do_commit
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2630, in _connection_commit_impl
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1096, in _commit_impl
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1094, in _commit_impl
+  File "/home/airflow/.local/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 686, in do_commit
+sqlalchemy.exc.OperationalError: (psycopg2.OperationalError) server closed the connection unexpectedly
+	This probably means the server terminated abnormally
+	before or while processing the request.
+
+(Background on this error at: https://sqlalche.me/e/14/e3q8)
+[2026-06-10T19:45:23.088+0000] {job.py:221} ERROR - Job heartbeat failed with error. Scheduler is in unhealthy state

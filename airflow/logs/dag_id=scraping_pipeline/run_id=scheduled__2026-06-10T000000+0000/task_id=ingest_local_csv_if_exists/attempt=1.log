@@ -1,0 +1,14 @@
+[2026-06-11T07:52:07.609+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: scraping_pipeline.ingest_local_csv_if_exists scheduled__2026-06-10T00:00:00+00:00 [queued]>
+[2026-06-11T07:52:07.679+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: scraping_pipeline.ingest_local_csv_if_exists scheduled__2026-06-10T00:00:00+00:00 [queued]>
+[2026-06-11T07:52:07.682+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-06-11T07:52:07.853+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): ingest_local_csv_if_exists> on 2026-06-10 00:00:00+00:00
+[2026-06-11T07:52:07.866+0000] {standard_task_runner.py:60} INFO - Started process 1785 to run task
+[2026-06-11T07:52:07.874+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'scraping_pipeline', 'ingest_local_csv_if_exists', 'scheduled__2026-06-10T00:00:00+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/01_scraping_dag.py', '--cfg-path', '/tmp/tmpep7fuors']
+[2026-06-11T07:52:07.898+0000] {standard_task_runner.py:88} INFO - Job 16: Subtask ingest_local_csv_if_exists
+[2026-06-11T07:52:08.263+0000] {task_command.py:423} INFO - Running <TaskInstance: scraping_pipeline.ingest_local_csv_if_exists scheduled__2026-06-10T00:00:00+00:00 [running]> on host f0d924a7adde
+[2026-06-11T07:52:09.392+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='scraping_pipeline' AIRFLOW_CTX_TASK_ID='ingest_local_csv_if_exists' AIRFLOW_CTX_EXECUTION_DATE='2026-06-10T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-06-10T00:00:00+00:00'
+[2026-06-11T07:52:09.422+0000] {logging_mixin.py:188} INFO - Fichier CSV non trouvé : /opt/***/data/sample_courses.csv. Ignorer l'ingestion.
+[2026-06-11T07:52:09.433+0000] {python.py:201} INFO - Done. Returned value was: None
+[2026-06-11T07:52:09.547+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=scraping_pipeline, task_id=ingest_local_csv_if_exists, execution_date=20260610T000000, start_date=20260611T075207, end_date=20260611T075209
+[2026-06-11T07:52:09.766+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-06-11T07:52:10.255+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

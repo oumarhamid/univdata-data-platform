@@ -1,0 +1,135 @@
+[2026-06-10T18:36:20.423+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: scraping_pipeline.scrape_fsac.univh2c.ma manual__2026-06-10T18:36:14.651398+00:00 [queued]>
+[2026-06-10T18:36:20.471+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: scraping_pipeline.scrape_fsac.univh2c.ma manual__2026-06-10T18:36:14.651398+00:00 [queued]>
+[2026-06-10T18:36:20.473+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-06-10T18:36:20.551+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_fsac.univh2c.ma> on 2026-06-10 18:36:14.651398+00:00
+[2026-06-10T18:36:20.574+0000] {standard_task_runner.py:60} INFO - Started process 361 to run task
+[2026-06-10T18:36:20.600+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'scraping_pipeline', 'scrape_fsac.univh2c.ma', 'manual__2026-06-10T18:36:14.651398+00:00', '--job-id', '45', '--raw', '--subdir', 'DAGS_FOLDER/01_scraping_dag.py', '--cfg-path', '/tmp/tmp8evdxsdq']
+[2026-06-10T18:36:20.613+0000] {standard_task_runner.py:88} INFO - Job 45: Subtask scrape_fsac.univh2c.ma
+[2026-06-10T18:36:20.898+0000] {task_command.py:423} INFO - Running <TaskInstance: scraping_pipeline.scrape_fsac.univh2c.ma manual__2026-06-10T18:36:14.651398+00:00 [running]> on host 2005399a2cc4
+[2026-06-10T18:36:21.643+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='scraping_pipeline' AIRFLOW_CTX_TASK_ID='scrape_fsac.univh2c.ma' AIRFLOW_CTX_EXECUTION_DATE='2026-06-10T18:36:14.651398+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-10T18:36:14.651398+00:00'
+[2026-06-10T18:36:21.699+0000] {logging_mixin.py:188} INFO - [DEBUG] Démarrage scraping pour fsac.univh2c.ma depuis https://fsac.univh2c.ma/front/index.html, profondeur max 5
+[2026-06-10T18:36:21.712+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/index.html (depth 0)
+[2026-06-10T18:36:22.362+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=0/fsac.univh2c.ma_front_index.html.html to raw-web-html
+[2026-06-10T18:36:22.363+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=0/fsac.univh2c.ma_front_index.html.html
+[2026-06-10T18:36:22.389+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
+[2026-06-10T18:36:22.391+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/automotive.jpg
+[2026-06-10T18:36:22.392+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/css/style4.css
+[2026-06-10T18:36:22.392+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/Chatbot/project/action.js
+[2026-06-10T18:36:22.393+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://www.flickr.com/photos/188979619@N02/albums/72157714813659111
+[2026-06-10T18:36:22.396+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/tabs.html?page=formations
+[2026-06-10T18:36:22.397+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://cdn.jsdelivr.net/npm/dompurify@2.3.10/dist/purify.min.js
+[2026-06-10T18:36:22.398+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/recruts.html
+[2026-06-10T18:36:22.399+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/favicon.ico
+[2026-06-10T18:36:22.400+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://code.jquery.com/jquery-3.5.1.min.js
+[2026-06-10T18:36:22.404+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://cdn.jsdelivr.net/npm/marked/marked.min.js
+[2026-06-10T18:36:22.406+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/cookies.png
+[2026-06-10T18:36:22.407+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/annonces.html
+[2026-06-10T18:36:22.408+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T18:36:22.409+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://fonts.googleapis.com/css?family=Arima Madurai
+[2026-06-10T18:36:22.410+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/logistic.jpg
+[2026-06-10T18:36:22.411+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/js/callWS.js
+[2026-06-10T18:36:22.411+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/Chatbot/project/styles.css
+[2026-06-10T18:36:22.412+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/js/slider2.js
+[2026-06-10T18:36:22.413+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://embedr.flickr.com/assets/client-code.js
+[2026-06-10T18:36:22.415+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://live.staticflickr.com/65535/50026488148_376a93c5c6_z.jpg
+[2026-06-10T18:36:22.423+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://www.googletagmanager.com/gtag/js?id=G-CWYLG70NK9
+[2026-06-10T18:36:22.424+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/events.html
+[2026-06-10T18:36:22.425+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/analytics.png
+[2026-06-10T18:36:22.426+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/energy.jpg
+[2026-06-10T18:36:22.426+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/info.jpg
+[2026-06-10T18:36:22.427+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/electronique.jpg
+[2026-06-10T18:36:22.428+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://fsac.univh2c.ma/front/images/fc/btp.jpg
+[2026-06-10T18:36:22.431+0000] {logging_mixin.py:188} INFO - [DEBUG] 19 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/index.html
+[2026-06-10T18:36:23.426+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/automotive.jpg (depth 1)
+[2026-06-10T18:36:24.932+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/82be88834ff396d3b6e73a1a542d7f64.jpg to raw-images
+[2026-06-10T18:36:24.933+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/82be88834ff396d3b6e73a1a542d7f64.jpg
+[2026-06-10T18:36:25.938+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/css/style4.css (depth 1)
+[2026-06-10T18:36:28.281+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/others/85fa8ac34fdbfe28fa7742f421b3ae28.bin to raw-logs
+[2026-06-10T18:36:28.317+0000] {logging_mixin.py:188} INFO - [DEBUG] Autre fichier sauvegardé : fsac.univh2c.ma/others/85fa8ac34fdbfe28fa7742f421b3ae28.bin
+[2026-06-10T18:36:29.353+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/Chatbot/project/action.js (depth 1)
+[2026-06-10T18:36:29.634+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/others/d37ea5746cfbbf10111309bc62e428c5.bin to raw-logs
+[2026-06-10T18:36:29.642+0000] {logging_mixin.py:188} INFO - [DEBUG] Autre fichier sauvegardé : fsac.univh2c.ma/others/d37ea5746cfbbf10111309bc62e428c5.bin
+[2026-06-10T18:36:30.646+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/tabs.html?page=formations (depth 1)
+[2026-06-10T18:36:30.829+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html to raw-web-html
+[2026-06-10T18:36:30.831+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_tabs.html.html
+[2026-06-10T18:36:30.844+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
+[2026-06-10T18:36:30.854+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://www.googletagmanager.com/gtag/js?id=G-CWYLG70NK9
+[2026-06-10T18:36:30.855+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://fonts.googleapis.com/css?family=Arima Madurai
+[2026-06-10T18:36:30.861+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T18:36:30.864+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/getTabs.js
+[2026-06-10T18:36:30.865+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/favicon.ico
+[2026-06-10T18:36:30.866+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://code.jquery.com/jquery-3.5.1.min.js
+[2026-06-10T18:36:30.867+0000] {logging_mixin.py:188} INFO - [DEBUG] 3 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/tabs.html?page=formations
+[2026-06-10T18:36:32.343+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/recruts.html (depth 1)
+[2026-06-10T18:36:32.663+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_recruts.html.html to raw-web-html
+[2026-06-10T18:36:32.666+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_recruts.html.html
+[2026-06-10T18:36:32.683+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
+[2026-06-10T18:36:32.684+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://www.googletagmanager.com/gtag/js?id=G-CWYLG70NK9
+[2026-06-10T18:36:32.695+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://fonts.googleapis.com/css?family=Arima Madurai
+[2026-06-10T18:36:32.697+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T18:36:32.698+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/images/favicon.ico
+[2026-06-10T18:36:32.699+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://code.jquery.com/jquery-3.5.1.min.js
+[2026-06-10T18:36:32.701+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/callWS.js
+[2026-06-10T18:36:32.702+0000] {logging_mixin.py:188} INFO - [DEBUG] 3 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/recruts.html
+[2026-06-10T18:36:33.704+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/favicon.ico (depth 1)
+[2026-06-10T18:36:33.870+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/dbe42b9a501c5905e2281a8e03d630ac.ico to raw-images
+[2026-06-10T18:36:33.877+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/dbe42b9a501c5905e2281a8e03d630ac.ico
+[2026-06-10T18:36:34.884+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/cookies.png (depth 1)
+[2026-06-10T18:36:35.047+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/45ca43863f20e1564fe4c93f9ded49df.png to raw-images
+[2026-06-10T18:36:35.052+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/45ca43863f20e1564fe4c93f9ded49df.png
+[2026-06-10T18:36:36.102+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/annonces.html (depth 1)
+[2026-06-10T18:36:36.426+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_annonces.html.html to raw-web-html
+[2026-06-10T18:36:36.431+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_annonces.html.html
+[2026-06-10T18:36:36.462+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
+[2026-06-10T18:36:36.466+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://www.googletagmanager.com/gtag/js?id=G-CWYLG70NK9
+[2026-06-10T18:36:36.470+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://fonts.googleapis.com/css?family=Arima Madurai
+[2026-06-10T18:36:36.475+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/global.js
+[2026-06-10T18:36:36.477+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://code.jquery.com/jquery-3.5.1.min.js
+[2026-06-10T18:36:36.479+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 2) : https://fsac.univh2c.ma/front/js/callWS.js
+[2026-06-10T18:36:36.482+0000] {logging_mixin.py:188} INFO - [DEBUG] 2 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/annonces.html
+[2026-06-10T18:36:37.546+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/js/global.js (depth 1)
+[2026-06-10T18:36:38.118+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/others/a3f88c9c3e508931c863c56752acae63.bin to raw-logs
+[2026-06-10T18:36:38.148+0000] {logging_mixin.py:188} INFO - [DEBUG] Autre fichier sauvegardé : fsac.univh2c.ma/others/a3f88c9c3e508931c863c56752acae63.bin
+[2026-06-10T18:36:39.214+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/logistic.jpg (depth 1)
+[2026-06-10T18:36:39.858+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/118f8ce32b126e238b3b0519fd4727bd.jpg to raw-images
+[2026-06-10T18:36:39.861+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/118f8ce32b126e238b3b0519fd4727bd.jpg
+[2026-06-10T18:36:40.865+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/js/callWS.js (depth 1)
+[2026-06-10T18:36:41.575+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/others/daf84ddd81eff9b9c3650aea5d03ee34.bin to raw-logs
+[2026-06-10T18:36:41.587+0000] {logging_mixin.py:188} INFO - [DEBUG] Autre fichier sauvegardé : fsac.univh2c.ma/others/daf84ddd81eff9b9c3650aea5d03ee34.bin
+[2026-06-10T18:36:42.594+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/Chatbot/project/styles.css (depth 1)
+[2026-06-10T18:36:42.691+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/others/eb71aaed615c471e7a594cf3ca48da55.bin to raw-logs
+[2026-06-10T18:36:42.844+0000] {logging_mixin.py:188} INFO - [DEBUG] Autre fichier sauvegardé : fsac.univh2c.ma/others/eb71aaed615c471e7a594cf3ca48da55.bin
+[2026-06-10T18:36:43.861+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/js/slider2.js (depth 1)
+[2026-06-10T18:36:44.337+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/others/3fb1b5705f3c391378e76e0b57584023.bin to raw-logs
+[2026-06-10T18:36:44.342+0000] {logging_mixin.py:188} INFO - [DEBUG] Autre fichier sauvegardé : fsac.univh2c.ma/others/3fb1b5705f3c391378e76e0b57584023.bin
+[2026-06-10T18:36:45.353+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/events.html (depth 1)
+[2026-06-10T18:36:46.071+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_events.html.html to raw-web-html
+[2026-06-10T18:36:46.074+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : fsac.univh2c.ma/depth=1/fsac.univh2c.ma_front_events.html.html
+[2026-06-10T18:36:46.082+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css
+[2026-06-10T18:36:46.092+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://www.googletagmanager.com/gtag/js?id=G-CWYLG70NK9
+[2026-06-10T18:36:46.094+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://fonts.googleapis.com/css?family=Arima Madurai
+[2026-06-10T18:36:46.101+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://code.jquery.com/jquery-3.5.1.min.js
+[2026-06-10T18:36:46.103+0000] {logging_mixin.py:188} INFO - [DEBUG] 0 nouveaux liens internes trouvés dans https://fsac.univh2c.ma/front/events.html
+[2026-06-10T18:36:47.106+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/analytics.png (depth 1)
+[2026-06-10T18:36:47.312+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/36c94321209cb24fa02a2f6835cee407.png to raw-images
+[2026-06-10T18:36:47.313+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/36c94321209cb24fa02a2f6835cee407.png
+[2026-06-10T18:36:48.315+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/energy.jpg (depth 1)
+[2026-06-10T18:36:48.727+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/b23861b1a0213acc3205d8a1b6d5ad9c.jpg to raw-images
+[2026-06-10T18:36:48.729+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/b23861b1a0213acc3205d8a1b6d5ad9c.jpg
+[2026-06-10T18:36:49.731+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/info.jpg (depth 1)
+[2026-06-10T18:36:49.814+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/4eb763679a823196d110e20b574a868b.jpg to raw-images
+[2026-06-10T18:36:49.815+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/4eb763679a823196d110e20b574a868b.jpg
+[2026-06-10T18:36:50.817+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/electronique.jpg (depth 1)
+[2026-06-10T18:36:50.924+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/23f8d790fd1fe802936b99729a21bf5d.jpg to raw-images
+[2026-06-10T18:36:50.925+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/23f8d790fd1fe802936b99729a21bf5d.jpg
+[2026-06-10T18:36:51.927+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/images/fc/btp.jpg (depth 1)
+[2026-06-10T18:36:52.295+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/images/86e2f79dafa82e645e32330e29d2dc47.jpg to raw-images
+[2026-06-10T18:36:52.299+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : fsac.univh2c.ma/images/86e2f79dafa82e645e32330e29d2dc47.jpg
+[2026-06-10T18:36:53.301+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://fsac.univh2c.ma/front/js/getTabs.js (depth 2)
+[2026-06-10T18:36:53.394+0000] {logging_mixin.py:188} INFO - Uploaded fsac.univh2c.ma/others/ac902fffa164108f2e750d9e3394ecf1.bin to raw-logs
+[2026-06-10T18:36:53.396+0000] {logging_mixin.py:188} INFO - [DEBUG] Autre fichier sauvegardé : fsac.univh2c.ma/others/ac902fffa164108f2e750d9e3394ecf1.bin
+[2026-06-10T18:36:54.399+0000] {logging_mixin.py:188} INFO - [DEBUG] Scraping terminé pour fsac.univh2c.ma, 21 URLs traitées (limite 1000)
+[2026-06-10T18:36:54.406+0000] {python.py:201} INFO - Done. Returned value was: Scraping terminé pour fsac.univh2c.ma, 21 URLs traitées (limite 1000)
+[2026-06-10T18:36:54.477+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=scraping_pipeline, task_id=scrape_fsac.univh2c.ma, execution_date=20260610T183614, start_date=20260610T183620, end_date=20260610T183654
+[2026-06-10T18:36:54.556+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-06-10T18:36:54.633+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

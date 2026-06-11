@@ -1,0 +1,20 @@
+[2026-06-10T18:31:55.307+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: scraping_pipeline.scrape_um5.ac.ma manual__2026-06-10T18:31:48.256268+00:00 [queued]>
+[2026-06-10T18:31:55.444+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: scraping_pipeline.scrape_um5.ac.ma manual__2026-06-10T18:31:48.256268+00:00 [queued]>
+[2026-06-10T18:31:55.461+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-06-10T18:31:55.617+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_um5.ac.ma> on 2026-06-10 18:31:48.256268+00:00
+[2026-06-10T18:31:55.944+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'scraping_pipeline', 'scrape_um5.ac.ma', 'manual__2026-06-10T18:31:48.256268+00:00', '--job-id', '43', '--raw', '--subdir', 'DAGS_FOLDER/01_scraping_dag.py', '--cfg-path', '/tmp/tmpmcsnfflb']
+[2026-06-10T18:31:56.073+0000] {standard_task_runner.py:88} INFO - Job 43: Subtask scrape_um5.ac.ma
+[2026-06-10T18:31:55.875+0000] {standard_task_runner.py:60} INFO - Started process 220 to run task
+[2026-06-10T18:31:57.072+0000] {task_command.py:423} INFO - Running <TaskInstance: scraping_pipeline.scrape_um5.ac.ma manual__2026-06-10T18:31:48.256268+00:00 [running]> on host 2005399a2cc4
+[2026-06-10T18:31:57.707+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='scraping_pipeline' AIRFLOW_CTX_TASK_ID='scrape_um5.ac.ma' AIRFLOW_CTX_EXECUTION_DATE='2026-06-10T18:31:48.256268+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-10T18:31:48.256268+00:00'
+[2026-06-10T18:31:57.813+0000] {logging_mixin.py:188} INFO - [DEBUG] Démarrage scraping pour um5.ac.ma depuis https://um5.ac.ma/, profondeur max 5
+[2026-06-10T18:31:57.834+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://um5.ac.ma/ (depth 0)
+[2026-06-10T18:32:05.684+0000] {logging_mixin.py:188} INFO - [ERROR] URL: https://um5.ac.ma/
+Error: HTTPSConnectionPool(host='um5.ac.ma', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7950f01b6710>: Failed to resolve 'um5.ac.ma' ([Errno -2] Name or service not known)"))
+Depth: 0
+[2026-06-10T18:32:06.035+0000] {logging_mixin.py:188} INFO - Uploaded errors/ef0ef9ffb8ebf5701ecc9677fc61a545.txt to raw-logs
+[2026-06-10T18:32:06.039+0000] {logging_mixin.py:188} INFO - [DEBUG] Scraping terminé pour um5.ac.ma, 1 URLs traitées (limite 2000)
+[2026-06-10T18:32:06.040+0000] {python.py:201} INFO - Done. Returned value was: Scraping terminé pour um5.ac.ma, 1 URLs traitées (limite 2000)
+[2026-06-10T18:32:06.253+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=scraping_pipeline, task_id=scrape_um5.ac.ma, execution_date=20260610T183148, start_date=20260610T183155, end_date=20260610T183206
+[2026-06-10T18:32:06.403+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-06-10T18:32:06.508+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

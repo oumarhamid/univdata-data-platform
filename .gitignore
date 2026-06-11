@@ -1,0 +1,39 @@
+# --- DONNÉES BRUTES (MINIO) ---
+# Tes buckets locaux ne doivent JAMAIS être commités
+minio_data/
+minio_data/.minio.sys/
+
+# --- STOCKAGE VECTORIEL (QDRANT) ---
+# Les données de Qdrant sont aussi des fichiers binaires
+qdrant_storage/
+qdrant_storage/*
+
+# --- JARS HADOOP (Trop lourds) ---
+jars/
+jars/*.jar
+
+# --- CACHES SPARK ---
+# Spark crée parfois des dossiers temporaires
+spark-warehouse/
+spark_scripts/__pycache__/
+spark_scripts/*.pyc
+
+# --- ENVIRONNEMENT PYTHON (UV) ---
+# Ne pas versionner les paquets installés
+.venv/
+venv/
+__pycache__/
+
+# --- CONFIGURATION DOCKER LOCALE ---
+# Si tu as des volumes ou variables d'env locales
+.env
+.env.local
+
+# --- LOGS ---
+# Tout ce qui est log ou fichier temporaire
+logs/
+*.log
+*.tmp
+
+# --- FICHIERS SPECIFIQUES A VSCODE ---
+.vscode/

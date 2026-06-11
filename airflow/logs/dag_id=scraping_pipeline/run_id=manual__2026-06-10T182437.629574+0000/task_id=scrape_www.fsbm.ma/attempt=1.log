@@ -1,0 +1,33 @@
+[2026-06-10T18:24:41.657+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: scraping_pipeline.scrape_www.fsbm.ma manual__2026-06-10T18:24:37.629574+00:00 [queued]>
+[2026-06-10T18:24:41.692+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: scraping_pipeline.scrape_www.fsbm.ma manual__2026-06-10T18:24:37.629574+00:00 [queued]>
+[2026-06-10T18:24:41.693+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-06-10T18:24:43.427+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_www.fsbm.ma> on 2026-06-10 18:24:37.629574+00:00
+[2026-06-10T18:24:43.537+0000] {standard_task_runner.py:60} INFO - Started process 210 to run task
+[2026-06-10T18:24:43.601+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'scraping_pipeline', 'scrape_www.fsbm.ma', 'manual__2026-06-10T18:24:37.629574+00:00', '--job-id', '35', '--raw', '--subdir', 'DAGS_FOLDER/01_scraping_dag.py', '--cfg-path', '/tmp/tmpgc75aksx']
+[2026-06-10T18:24:43.637+0000] {standard_task_runner.py:88} INFO - Job 35: Subtask scrape_www.fsbm.ma
+[2026-06-10T18:24:45.342+0000] {task_command.py:423} INFO - Running <TaskInstance: scraping_pipeline.scrape_www.fsbm.ma manual__2026-06-10T18:24:37.629574+00:00 [running]> on host 2005399a2cc4
+[2026-06-10T18:24:46.261+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='scraping_pipeline' AIRFLOW_CTX_TASK_ID='scrape_www.fsbm.ma' AIRFLOW_CTX_EXECUTION_DATE='2026-06-10T18:24:37.629574+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-10T18:24:37.629574+00:00'
+[2026-06-10T18:24:46.299+0000] {logging_mixin.py:188} INFO - [DEBUG] Démarrage scraping pour www.fsbm.ma depuis https://www.fsbm.ma/, profondeur max 5
+[2026-06-10T18:24:46.307+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://www.fsbm.ma/ (depth 0)
+[2026-06-10T18:24:48.440+0000] {logging_mixin.py:188} INFO - Uploaded www.fsbm.ma/depth=0/www.fsbm.ma_index.html to raw-web-html
+[2026-06-10T18:24:48.442+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : www.fsbm.ma/depth=0/www.fsbm.ma_index.html
+[2026-06-10T18:24:48.459+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://www.fsbm.ma/lovable-uploads/2497220a-4f3c-414d-8c6d-6503cf420d62.png
+[2026-06-10T18:24:48.462+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://www.fsbm.ma/assets/index-C0FHhwyt.js
+[2026-06-10T18:24:48.463+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://cdn.gpteng.co/gptengineer.js
+[2026-06-10T18:24:48.475+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://www.fsbm.ma/assets/index-D2IxnEF_.css
+[2026-06-10T18:24:48.480+0000] {logging_mixin.py:188} INFO - [DEBUG] Lien externe ignoré : https://www.googletagmanager.com/gtag/js?id=G-9GL02S50VY
+[2026-06-10T18:24:48.482+0000] {logging_mixin.py:188} INFO - [DEBUG] 3 nouveaux liens internes trouvés dans https://www.fsbm.ma/
+[2026-06-10T18:24:49.484+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://www.fsbm.ma/lovable-uploads/2497220a-4f3c-414d-8c6d-6503cf420d62.png (depth 1)
+[2026-06-10T18:25:01.691+0000] {logging_mixin.py:188} INFO - Uploaded www.fsbm.ma/images/96d8e8f8bab57d2fd4dfb35368329ac4.png to raw-images
+[2026-06-10T18:25:01.692+0000] {logging_mixin.py:188} INFO - [DEBUG] Image sauvegardée : www.fsbm.ma/images/96d8e8f8bab57d2fd4dfb35368329ac4.png
+[2026-06-10T18:25:02.699+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://www.fsbm.ma/assets/index-C0FHhwyt.js (depth 1)
+[2026-06-10T18:25:04.005+0000] {logging_mixin.py:188} INFO - Uploaded www.fsbm.ma/others/934580774254569622f6f24a6c909a24.bin to raw-logs
+[2026-06-10T18:25:04.007+0000] {logging_mixin.py:188} INFO - [DEBUG] Autre fichier sauvegardé : www.fsbm.ma/others/934580774254569622f6f24a6c909a24.bin
+[2026-06-10T18:25:05.166+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://www.fsbm.ma/assets/index-D2IxnEF_.css (depth 1)
+[2026-06-10T18:25:06.209+0000] {logging_mixin.py:188} INFO - Uploaded www.fsbm.ma/others/c891897a7aa5c67080d39fb121e5ffb0.bin to raw-logs
+[2026-06-10T18:25:06.254+0000] {logging_mixin.py:188} INFO - [DEBUG] Autre fichier sauvegardé : www.fsbm.ma/others/c891897a7aa5c67080d39fb121e5ffb0.bin
+[2026-06-10T18:25:07.266+0000] {logging_mixin.py:188} INFO - [DEBUG] Scraping terminé pour www.fsbm.ma, 4 URLs traitées (limite 2000)
+[2026-06-10T18:25:07.269+0000] {python.py:201} INFO - Done. Returned value was: Scraping terminé pour www.fsbm.ma, 4 URLs traitées (limite 2000)
+[2026-06-10T18:25:07.313+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=scraping_pipeline, task_id=scrape_www.fsbm.ma, execution_date=20260610T182437, start_date=20260610T182441, end_date=20260610T182507
+[2026-06-10T18:25:07.392+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-06-10T18:25:07.463+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

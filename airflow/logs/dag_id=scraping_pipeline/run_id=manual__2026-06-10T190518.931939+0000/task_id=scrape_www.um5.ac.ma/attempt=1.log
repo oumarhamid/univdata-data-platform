@@ -1,0 +1,23 @@
+[2026-06-10T19:05:41.541+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: scraping_pipeline.scrape_www.um5.ac.ma manual__2026-06-10T19:05:18.931939+00:00 [queued]>
+[2026-06-10T19:05:41.686+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: scraping_pipeline.scrape_www.um5.ac.ma manual__2026-06-10T19:05:18.931939+00:00 [queued]>
+[2026-06-10T19:05:41.689+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2026-06-10T19:05:41.851+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): scrape_www.um5.ac.ma> on 2026-06-10 19:05:18.931939+00:00
+[2026-06-10T19:05:41.875+0000] {standard_task_runner.py:60} INFO - Started process 273 to run task
+[2026-06-10T19:05:41.910+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'scraping_pipeline', 'scrape_www.um5.ac.ma', 'manual__2026-06-10T19:05:18.931939+00:00', '--job-id', '60', '--raw', '--subdir', 'DAGS_FOLDER/01_scraping_dag.py', '--cfg-path', '/tmp/tmpq4hvhcqc']
+[2026-06-10T19:05:41.952+0000] {standard_task_runner.py:88} INFO - Job 60: Subtask scrape_www.um5.ac.ma
+[2026-06-10T19:05:42.867+0000] {task_command.py:423} INFO - Running <TaskInstance: scraping_pipeline.scrape_www.um5.ac.ma manual__2026-06-10T19:05:18.931939+00:00 [running]> on host 83dc73531537
+[2026-06-10T19:05:44.262+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data-team' AIRFLOW_CTX_DAG_ID='scraping_pipeline' AIRFLOW_CTX_TASK_ID='scrape_www.um5.ac.ma' AIRFLOW_CTX_EXECUTION_DATE='2026-06-10T19:05:18.931939+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-10T19:05:18.931939+00:00'
+[2026-06-10T19:05:46.700+0000] {logging_mixin.py:188} INFO - [DEBUG] Démarrage scraping pour www.um5.ac.ma depuis https://www.um5.ac.ma/, profondeur max 5
+[2026-06-10T19:05:46.702+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://www.um5.ac.ma/ (depth 0)
+[2026-06-10T19:05:48.191+0000] {logging_mixin.py:188} INFO - Uploaded www.um5.ac.ma/depth=0/www.um5.ac.ma_index.html to raw-web-html
+[2026-06-10T19:05:48.215+0000] {logging_mixin.py:188} INFO - [DEBUG] HTML sauvegardé : www.um5.ac.ma/depth=0/www.um5.ac.ma_index.html
+[2026-06-10T19:05:48.244+0000] {logging_mixin.py:188} INFO - [DEBUG] Nouveau lien ajouté (depth 1) : https://www.um5.ac.ma/bnith__4n6flZv1GusCVIv7Bp9Yuujd_c9Hp7l5U35uvsiX4XeWgrBUBmVmHUXb8RLYCNBHqwWXkEBFhqU=
+[2026-06-10T19:05:48.247+0000] {logging_mixin.py:188} INFO - [DEBUG] 1 nouveaux liens internes trouvés dans https://www.um5.ac.ma/
+[2026-06-10T19:05:49.332+0000] {logging_mixin.py:188} INFO - [DEBUG] Traitement de https://www.um5.ac.ma/bnith__4n6flZv1GusCVIv7Bp9Yuujd_c9Hp7l5U35uvsiX4XeWgrBUBmVmHUXb8RLYCNBHqwWXkEBFhqU= (depth 1)
+[2026-06-10T19:05:50.569+0000] {logging_mixin.py:188} INFO - Uploaded www.um5.ac.ma/others/94fceeed2a281ebb0023ce0fcd57c849.bin to raw-logs
+[2026-06-10T19:05:50.578+0000] {logging_mixin.py:188} INFO - [DEBUG] Autre fichier sauvegardé : www.um5.ac.ma/others/94fceeed2a281ebb0023ce0fcd57c849.bin
+[2026-06-10T19:05:51.593+0000] {logging_mixin.py:188} INFO - [DEBUG] Scraping terminé pour www.um5.ac.ma, 2 URLs traitées (limite 2000)
+[2026-06-10T19:05:51.618+0000] {python.py:201} INFO - Done. Returned value was: Scraping terminé pour www.um5.ac.ma, 2 URLs traitées (limite 2000)
+[2026-06-10T19:05:52.785+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=scraping_pipeline, task_id=scrape_www.um5.ac.ma, execution_date=20260610T190518, start_date=20260610T190541, end_date=20260610T190552
+[2026-06-10T19:05:53.228+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-06-10T19:05:53.329+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

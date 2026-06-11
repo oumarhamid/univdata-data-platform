@@ -1,0 +1,226 @@
+networks:
+  data-platform-net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  minio_data:
+
+services:
+  # ==================== POSTGRESQL pour Airflow ====================
+  postgres:
+    image: postgres:13
+    container_name: univdata-postgres
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - data-platform-net
+    restart: unless-stopped
+
+  # ==================== MINIO ====================
+  minio:
+    image: minio/minio:latest
+    container_name: univdata-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      - data-platform-net
+    restart: unless-stopped
+
+  # Création automatique des buckets (raw + curated)
+  minio-setup:
+    image: minio/mc:latest
+    container_name: univdata-minio-setup
+    depends_on:
+      minio:
+        condition: service_healthy
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+      MINIO_BUCKET_RAW_HTML: raw-web-html
+      MINIO_BUCKET_RAW_DOCS: raw-documents
+      MINIO_BUCKET_RAW_IMAGES: raw-images
+      MINIO_BUCKET_RAW_JSON: raw-json
+      MINIO_BUCKET_RAW_LOGS: raw-logs
+    volumes:
+      - ./minio/buckets-setup.sh:/setup.sh
+    entrypoint: /bin/sh
+    command: /setup.sh
+    networks:
+      - data-platform-net
+    restart: "no"
+
+  # ==================== AIRFLOW ====================
+  airflow-init:
+    build: ./airflow
+    container_name: univdata-airflow-init
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/data:/opt/airflow/data
+      - ./configs:/opt/airflow/configs
+    entrypoint: /bin/bash
+    command: -c "airflow db init && airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com"
+    networks:
+      - data-platform-net
+    restart: "no"
+
+  airflow-webserver:
+    build: ./airflow
+    container_name: univdata-airflow-webserver
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      _PIP_ADDITIONAL_REQUIREMENTS: "requests playwright beautifulsoup4 minio elasticsearch"
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./airflow/data:/opt/airflow/data
+      - ./configs:/opt/airflow/configs
+    networks:
+      - data-platform-net
+    command: webserver
+    restart: unless-stopped
+
+  airflow-scheduler:
+    build: ./airflow
+    container_name: univdata-airflow-scheduler
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      _PIP_ADDITIONAL_REQUIREMENTS: "requests playwright beautifulsoup4 minio elasticsearch"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./airflow/data:/opt/airflow/data
+      - ./configs:/opt/airflow/configs
+    networks:
+      - data-platform-net
+    command: scheduler
+    restart: unless-stopped
+
+  # ==================== METABASE ====================
+  metabase:
+    image: metabase/metabase:latest
+    container_name: univdata-metabase
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_HOST: postgres
+      MB_DB_PORT: 5432
+      MB_DB_USER: airflow
+      MB_DB_PASS: airflow
+      MB_DB_DBNAME: metabase
+      MB_DB_CONNECTION_TIMEOUT_MS: 60000
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - data-platform-net
+    restart: unless-stopped
+
+
+  spark-master:
+    image: apache/spark:3.5.0
+    container_name: univdata-spark-master
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+    environment:
+      SPARK_MASTER_HOST: spark-master
+      SPARK_MASTER_PORT: 7077
+      SPARK_MASTER_WEBUI_PORT: 8080
+      HADOOP_CONF_DIR: /opt/spark/conf
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    volumes:
+      - ./spark/jobs:/opt/spark/jobs
+      - ./spark/conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
+    networks:
+      - data-platform-net
+    restart: unless-stopped
+
+  spark-worker:
+    image: apache/spark:3.5.0
+    container_name: univdata-spark-worker
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    environment:
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 2g
+      SPARK_WORKER_WEBUI_PORT: 8081
+      HADOOP_CONF_DIR: /opt/spark/conf
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./spark/jobs:/opt/spark/jobs
+      - ./spark/conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
+    networks:
+      - data-platform-net
+    restart: unless-stopped
+
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
+    container_name: univdata-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - data-platform-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9200"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
