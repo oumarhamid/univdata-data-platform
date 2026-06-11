@@ -3,11 +3,13 @@ networks:
     driver: bridge
 
 volumes:
-  postgres_data:
-  minio_data:
+  postgres_data:      # PostgreSQL (Airflow + Hive)
+  minio_data:         # MinIO
+  elasticsearch_data: # Elasticsearch
+  metabase_data:      # Metabase
 
 services:
-  # ==================== POSTGRESQL pour Airflow ====================
+  # ==================== POSTGRESQL (Airflow & Hive) ====================
   postgres:
     image: postgres:13
     container_name: univdata-postgres
@@ -22,6 +24,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+      start_period: 30s
     networks:
       - data-platform-net
     restart: unless-stopped
@@ -44,6 +47,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+      start_period: 40s
     networks:
       - data-platform-net
     restart: unless-stopped
@@ -71,99 +75,26 @@ services:
       - data-platform-net
     restart: "no"
 
-  # ==================== AIRFLOW ====================
-  airflow-init:
-    build: ./airflow
-    container_name: univdata-airflow-init
+  # ==================== HIVE METASTORE ====================
+  hive-metastore:
+    image: apache/hive:3.1.3
+    container_name: univdata-hive-metastore
+    environment:
+      HIVE_METASTORE_DRIVER: org.postgresql.Driver
+      HIVE_METASTORE_JDBC_URL: jdbc:postgresql://postgres:5432/hive_metastore?createDatabaseIfNotExist=true
+      HIVE_METASTORE_USER: airflow
+      HIVE_METASTORE_PASSWORD: airflow
+      SERVICE_OPTS: "-Xmx1G"
     depends_on:
       postgres:
         condition: service_healthy
-    environment:
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-    volumes:
-      - ./airflow/dags:/opt/airflow/dags
-      - ./airflow/data:/opt/airflow/data
-      - ./configs:/opt/airflow/configs
-    entrypoint: /bin/bash
-    command: -c "airflow db init && airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com"
-    networks:
-      - data-platform-net
-    restart: "no"
-
-  airflow-webserver:
-    build: ./airflow
-    container_name: univdata-airflow-webserver
-    depends_on:
-      postgres:
-        condition: service_healthy
-      minio:
-        condition: service_healthy
-      airflow-init:
-        condition: service_completed_successfully
-    environment:
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-      AIRFLOW__CORE__EXECUTOR: LocalExecutor
-      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
-      _PIP_ADDITIONAL_REQUIREMENTS: "requests playwright beautifulsoup4 minio elasticsearch"
     ports:
-      - "8082:8080"
-    volumes:
-      - ./airflow/dags:/opt/airflow/dags
-      - ./airflow/logs:/opt/airflow/logs
-      - ./airflow/plugins:/opt/airflow/plugins
-      - ./airflow/data:/opt/airflow/data
-      - ./configs:/opt/airflow/configs
-    networks:
-      - data-platform-net
-    command: webserver
-    restart: unless-stopped
-
-  airflow-scheduler:
-    build: ./airflow
-    container_name: univdata-airflow-scheduler
-    depends_on:
-      postgres:
-        condition: service_healthy
-      airflow-init:
-        condition: service_completed_successfully
-    environment:
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-      AIRFLOW__CORE__EXECUTOR: LocalExecutor
-      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
-      _PIP_ADDITIONAL_REQUIREMENTS: "requests playwright beautifulsoup4 minio elasticsearch"
-    volumes:
-      - ./airflow/dags:/opt/airflow/dags
-      - ./airflow/logs:/opt/airflow/logs
-      - ./airflow/plugins:/opt/airflow/plugins
-      - ./airflow/data:/opt/airflow/data
-      - ./configs:/opt/airflow/configs
-    networks:
-      - data-platform-net
-    command: scheduler
-    restart: unless-stopped
-
-  # ==================== METABASE ====================
-  metabase:
-    image: metabase/metabase:latest
-    container_name: univdata-metabase
-    environment:
-      MB_DB_TYPE: postgres
-      MB_DB_HOST: postgres
-      MB_DB_PORT: 5432
-      MB_DB_USER: airflow
-      MB_DB_PASS: airflow
-      MB_DB_DBNAME: metabase
-      MB_DB_CONNECTION_TIMEOUT_MS: 60000
-    ports:
-      - "3000:3000"
-    depends_on:
-      postgres:
-        condition: service_healthy
+      - "9083:9083"
     networks:
       - data-platform-net
     restart: unless-stopped
 
-
+  # ==================== SPARK ====================
   spark-master:
     image: apache/spark:3.5.0
     container_name: univdata-spark-master
@@ -203,7 +134,7 @@ services:
       - data-platform-net
     restart: unless-stopped
 
-
+  # ==================== ELASTICSEARCH ====================
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
     container_name: univdata-elasticsearch
@@ -223,4 +154,100 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+      start_period: 60s
+    restart: unless-stopped
+
+  # ==================== AIRFLOW ====================
+  airflow-init:
+    build: ./airflow
+    container_name: univdata-airflow-init
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/data:/opt/airflow/data
+      - ./configs:/opt/airflow/configs
+    entrypoint: /bin/bash
+    command: -c "airflow db init && airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com"
+    networks:
+      - data-platform-net
+    restart: "no"
+
+  airflow-webserver:
+    build: ./airflow
+    container_name: univdata-airflow-webserver
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__WEBSERVER__WORKERS: 2
+      AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT: 300
+      AIRFLOW__CORE__LAZY_LOAD_PROVIDERS: "False"
+    ports:
+      - "8082:8080"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./airflow/data:/opt/airflow/data
+      - ./configs:/opt/airflow/configs
+    networks:
+      - data-platform-net
+    command: webserver
+    restart: unless-stopped
+
+  airflow-scheduler:
+    build: ./airflow
+    container_name: univdata-airflow-scheduler
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+    environment:
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - ./airflow/data:/opt/airflow/data
+      - ./configs:/opt/airflow/configs
+    networks:
+      - data-platform-net
+    command: scheduler
+    restart: unless-stopped
+
+  # ==================== METABASE ====================
+  metabase:
+    image: metabase/metabase:latest
+    container_name: univdata-metabase
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_HOST: postgres
+      MB_DB_PORT: 5432
+      MB_DB_USER: airflow
+      MB_DB_PASS: airflow
+      MB_DB_DBNAME: metabase
+      MB_DB_CONNECTION_TIMEOUT_MS: 60000
+    ports:
+      - "3000:3000"
+    volumes:
+      - metabase_data:/metabase.db
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - data-platform-net
     restart: unless-stopped

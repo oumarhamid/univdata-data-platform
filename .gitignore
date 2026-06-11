@@ -1,39 +1,45 @@
-# --- DONNÉES BRUTES (MINIO) ---
-# Tes buckets locaux ne doivent JAMAIS être commités
-minio_data/
-minio_data/.minio.sys/
-
-# --- STOCKAGE VECTORIEL (QDRANT) ---
-# Les données de Qdrant sont aussi des fichiers binaires
-qdrant_storage/
-qdrant_storage/*
-
-# --- JARS HADOOP (Trop lourds) ---
-jars/
-jars/*.jar
-
-# --- CACHES SPARK ---
-# Spark crée parfois des dossiers temporaires
-spark-warehouse/
-spark_scripts/__pycache__/
-spark_scripts/*.pyc
-
-# --- ENVIRONNEMENT PYTHON (UV) ---
-# Ne pas versionner les paquets installés
-.venv/
-venv/
+# Python
 __pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
 
-# --- CONFIGURATION DOCKER LOCALE ---
-# Si tu as des volumes ou variables d'env locales
-.env
-.env.local
-
-# --- LOGS ---
-# Tout ce qui est log ou fichier temporaire
-logs/
+# Logs
 *.log
-*.tmp
+airflow/logs/
+*.pid
 
-# --- FICHIERS SPECIFIQUES A VSCODE ---
+# Données locales et volumes Docker
+postgres_data/
+minio/data/
+elasticsearch_data/
+metabase_data/
+airflow/db_data/
+airflow/logs/
+raw-*/
+curated-zone/
+
+# Fichiers de configuration sensibles
+.env
+*.pem
+*.key
+*.crt
+hive/conf/hive-site.xml
+spark/conf/spark-defaults.conf
+
+# Fichiers temporaires et IDE
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
 .vscode/
+.idea/
+
+# Playwright cache (si présent localement)
+~/.cache/ms-playwright/

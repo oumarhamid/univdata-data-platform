@@ -1,10 +1,9 @@
 FROM apache/airflow:2.8.1-python3.10
 
 USER root
-RUN apt-get update && apt-get install -y curl gcc && apt-get clean
-
-# Installation de Playwright et des dépendances système nécessaires
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    gcc \
     libnss3 \
     libx11-xcb1 \
     libxcomposite1 \
@@ -16,15 +15,16 @@ RUN apt-get update && apt-get install -y \
     libgtk-3-0 \
     libdrm2 \
     libxshmfence1 \
-    && apt-get clean
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 USER airflow
-COPY requirements.txt /requirements.txt
+COPY --chown=airflow:airflow requirements.txt /requirements.txt
 RUN pip install --no-cache-dir -r /requirements.txt
 
-# Installer Playwright et le navigateur Chromium
-RUN pip install playwright && \
-    playwright install chromium
+# Playwright + Chromium
+RUN pip install --no-cache-dir playwright==1.40.0 && \
+    playwright install chromium && \
+    rm -rf /home/airflow/.cache/ms-playwright/*.zip
 
-# Optionnel : vérifier l'installation
 RUN playwright --version
