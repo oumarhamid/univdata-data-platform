@@ -14,11 +14,9 @@ spark = SparkSession.builder \
     .enableHiveSupport() \
     .getOrCreate()
 
-# Lecture des tables Hudi via Hive
 df_faculty = spark.sql("SELECT * FROM default.faculty_profiles")
 df_courses = spark.sql("SELECT * FROM default.course_catalog")
 
-# Ajout d'un champ type et d'un identifiant unique
 df_faculty_index = df_faculty.withColumn("doc_type", lit("faculty")) \
     .withColumn("_id", concat(lit("faculty_"), col("record_id")))
 df_courses_index = df_courses.withColumn("doc_type", lit("course")) \
@@ -26,17 +24,13 @@ df_courses_index = df_courses.withColumn("doc_type", lit("course")) \
 
 df_all = df_faculty_index.unionByName(df_courses_index, allowMissingColumns=True)
 
-# Configuration Elasticsearch
 es_conf = {
     "es.nodes": "elasticsearch",
     "es.port": "9200",
     "es.resource": "university_search/_doc",
     "es.mapping.id": "_id",
-    "es.write.operation": "index",
-    "es.net.http.auth.user": "",
-    "es.net.http.auth.pass": ""
+    "es.write.operation": "index"
 }
-
 df_all.write.format("org.elasticsearch.spark.sql") \
     .options(**es_conf) \
     .mode("append") \

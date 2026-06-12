@@ -1,0 +1,44 @@
+{
+    "domain": "imist.ma",
+    "start_url": "https://www.imist.ma/",
+    "max_depth": 4,
+    "rate_limit_seconds": 1,
+    "respect_robots": true,
+    "user_agent": "UnivDataBot/1.0 (+https://univdata.com/bot)",
+    "buckets": {
+        "html": "raw-web-html",
+        "documents": "raw-documents",
+        "images": "raw-images",
+        "logs": "raw-logs"
+    },
+    "file_extensions": [
+        "pdf",
+        "doc",
+        "docx",
+        "xls",
+        "xlsx",
+        "ppt",
+        "pptx",
+        "odt",
+        "ods",
+        "csv",
+        "json",
+        "xml",
+        "zip"
+    ],
+    "image_extensions": [
+        "jpg",
+        "jpeg",
+        "png",
+        "gif",
+        "svg",
+        "webp"
+    ],
+    "max_pages_per_domain": 2000,
+    "use_playwright": true,
+    "seed_urls": [
+        "https://revues.imist.ma/index.php/index/search/authors",
+        "https://toubkal.imist.ma/",
+        "https://otrohati.imist.ma/"
+    ]
+}

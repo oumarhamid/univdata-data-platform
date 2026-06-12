@@ -10,11 +10,11 @@
   </property>
   <property>
     <name>javax.jdo.option.ConnectionUserName</name>
-    <value>${POSTGRES_USER}</value>
+    <value>airflow</value>
   </property>
   <property>
     <name>javax.jdo.option.ConnectionPassword</name>
-    <value>${POSTGRES_PASSWORD}</value>
+    <value>airflow</value>
   </property>
   <property>
     <name>datanucleus.autoCreateSchema</name>

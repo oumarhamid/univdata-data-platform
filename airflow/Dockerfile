@@ -28,3 +28,7 @@ RUN pip install --no-cache-dir playwright==1.40.0 && \
     rm -rf /home/airflow/.cache/ms-playwright/*.zip
 
 RUN playwright --version
+
+USER root
+RUN apt-get update && apt-get install -y docker.io
+USER airflow

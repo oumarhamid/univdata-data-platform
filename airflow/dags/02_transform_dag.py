@@ -1,6 +1,5 @@
 from airflow import DAG
 from airflow.operators.bash import BashOperator
-from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 
 default_args = {
@@ -13,12 +12,11 @@ default_args = {
 
 with DAG('transform_pipeline', default_args=default_args,
          schedule_interval='@daily', catchup=False) as dag:
-    
-    # Soumettre le job Spark (en utilisant spark-submit)
-    # On suppose que les jars Hudi et Elasticsearch sont déjà dans l'image Spark
+
     spark_submit = BashOperator(
         task_id='run_spark_etl',
         bash_command="""
+        docker exec univdata-spark-master \
         spark-submit \
             --master spark://spark-master:7077 \
             --deploy-mode client \
@@ -26,5 +24,5 @@ with DAG('transform_pipeline', default_args=default_args,
             /opt/spark/jobs/etl_to_hudi.py
         """
     )
-    
+
     spark_submit
