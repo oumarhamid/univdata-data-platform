@@ -89,6 +89,9 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    volumes:
+      - ./hive/lib/hudi-spark3-bundle_2.12-0.15.0.jar:/opt/hive/lib/hudi-spark3-bundle_2.12-0.15.0.jar
+      - ./hive/conf/core-site.xml:/opt/hive/conf/core-site.xml
     ports:
       - "9083:9083"
     networks:
@@ -178,6 +181,7 @@ services:
     restart: "no"
 
   airflow-webserver:
+
     build: ./airflow
     container_name: univdata-airflow-webserver
     depends_on:
@@ -193,15 +197,20 @@ services:
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
       AIRFLOW__WEBSERVER__WORKERS: 1
       AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT: 300
-      AIRFLOW__CORE__LAZY_LOAD_PROVIDERS: "False"
+      AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT: 300
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "True"
+      AIRFLOW__CORE__LAZY_LOAD_PROVIDERS: "True"
+      PLAYWRIGHT_BROWSERS_PATH: /opt/playwright
     ports:
       - "8082:8080"
     volumes:
       - ./airflow/dags:/opt/airflow/dags
+      - /var/run/docker.sock:/var/run/docker.sock
       - ./airflow/logs:/opt/airflow/logs
       - ./airflow/plugins:/opt/airflow/plugins
       - ./airflow/data:/opt/airflow/data
       - ./configs:/opt/airflow/configs
+      - ./spark/jobs:/opt/spark/jobs
     networks:
       - data-platform-net
     command: webserver
@@ -219,12 +228,16 @@ services:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "True"
+      PLAYWRIGHT_BROWSERS_PATH: /opt/playwright
     volumes:
       - ./airflow/dags:/opt/airflow/dags
+      - /var/run/docker.sock:/var/run/docker.sock
       - ./airflow/logs:/opt/airflow/logs
       - ./airflow/plugins:/opt/airflow/plugins
       - ./airflow/data:/opt/airflow/data
       - ./configs:/opt/airflow/configs
+      - ./spark/jobs:/opt/spark/jobs
     networks:
       - data-platform-net
     command: scheduler
@@ -249,6 +262,23 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      - data-platform-net
+    restart: unless-stopped
+
+  hiveserver2:
+    image: univdata-hive-metastore
+    container_name: univdata-hiveserver2
+    depends_on:
+      hive-metastore:
+        condition: service_started
+      postgres:
+        condition: service_healthy
+    environment:
+      HIVE_METASTORE_URIS: thrift://hive-metastore:9083
+    ports:
+      - "10000:10000"
+    command: /opt/hive/bin/hive --service hiveserver2 --hiveconf hive.server2.thrift.port=10000 --hiveconf hive.server2.thrift.bind.host=0.0.0.0
     networks:
       - data-platform-net
     restart: unless-stopped

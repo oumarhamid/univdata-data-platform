@@ -1,6 +1,11 @@
 {
     "domain": "fsac.univh2c.ma",
     "start_url": "https://fsac.univh2c.ma/front/index.html",
+    "seed_urls": [
+        "https://fsac.univh2c.ma/front/tabs.html?page=departements",
+        "https://fsac.univh2c.ma/front/tabs.html?page=formations",
+        "https://fsac.univh2c.ma/front/tabs.html?page=presentation"
+    ],
     "max_depth": 3,
     "use_playwright": true,
     "rate_limit_seconds": 1,
@@ -13,29 +18,10 @@
         "logs": "raw-logs"
     },
     "file_extensions": [
-        "pdf",
-        "xls",
-        "xlsx",
-        "csv",
-        "tsv",
-        "doc",
-        "docx",
-        "ppt",
-        "pptx",
-        "json",
-        "xml",
-        "zip",
-        "rar"
+        "pdf", "xls", "xlsx", "csv", "tsv", "doc", "docx", "ppt", "pptx", "json", "xml", "zip", "rar"
     ],
     "image_extensions": [
-        "jpg",
-        "jpeg",
-        "png",
-        "gif",
-        "svg",
-        "webp",
-        "bmp",
-        "ico"
+        "jpg", "jpeg", "png", "gif", "svg", "webp", "bmp", "ico"
     ],
-    "max_pages_per_domain": 200
+    "max_pages_per_domain": 500
 }

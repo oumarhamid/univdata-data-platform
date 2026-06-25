@@ -1,6 +1,10 @@
 {
     "domain": "www.fsbm.ma",
     "start_url": "https://www.fsbm.ma/",
+    "seed_urls": [
+    "https://www.fsbm.ma/formation",
+    "https://www.fsbm.ma/departments"
+  ],
     "max_depth": 3,
     "rate_limit_seconds": 1,
     "use_playwright": true,

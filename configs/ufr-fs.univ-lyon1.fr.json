@@ -35,8 +35,8 @@
         "webp",
         "bmp"
     ],
-    "max_pages_per_domain": 500,
-    "use_playwright": true,
+    "max_pages_per_domain": 200,
+    "use_playwright": false,
     "seed_urls": [
         "http://ufr-fs.univ-lyon1.fr/departements",
         "http://ufr-fs.univ-lyon1.fr/annuaire",

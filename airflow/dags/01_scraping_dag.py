@@ -5,8 +5,11 @@ from datetime import datetime, timedelta
 import glob
 import os
 import json
+from utils.bfs_scraper_universal import bfs_scrape_universal
 
 from utils.openalex_ingest import ingest_openalex
+from utils.crossref_ingest import ingest_crossref
+from utils.orcid_ingest import ingest_orcid
 
 default_args = {
     'owner': 'data-team',
@@ -18,44 +21,46 @@ default_args = {
 
 CONFIG_DIR = '/opt/airflow/configs'
 
-def scrape_router(config_path, **context):
-    """Charge le fichier JSON et appelle le scraper adapté (statique ou Playwright)."""
-    with open(config_path, 'r') as f:
-        config = json.load(f)
-    use_playwright = config.get('use_playwright', False)
-    if use_playwright:
-        from utils.bfs_scraper_playwright import bfs_scrape_with_playwright
-        return bfs_scrape_with_playwright(config_path, **context)
-    else:
-        from utils.bfs_scraper import bfs_scrape_from_config
-        return bfs_scrape_from_config(config_path, **context)
-
+# Récupération des fichiers de configuration
 config_files = glob.glob(os.path.join(CONFIG_DIR, '*.json'))
 
 with DAG('scraping_pipeline', default_args=default_args,
-         schedule_interval='@daily', catchup=False) as dag:
+         schedule_interval='@weekly', catchup=False) as dag:
     
     start = DummyOperator(task_id='start')
     end = DummyOperator(task_id='end')
     
+    # ==================== APIS ====================
     task_openalex = PythonOperator(
         task_id='ingest_openalex',
-        python_callable=ingest_openalex
+        python_callable=ingest_openalex,
+        op_kwargs={'max_works': 5000}
+    )
+    task_crossref = PythonOperator(
+        task_id='ingest_crossref',
+        python_callable=ingest_crossref,
+        op_kwargs={'max_works': 2000}
+    )
+    task_orcid = PythonOperator(
+        task_id='ingest_orcid',
+        python_callable=ingest_orcid,
+        op_kwargs={'max_records': 1000}
     )
     
+    # ==================== SCRAPING WEB ====================
     scrape_tasks = []
     for config_path in config_files:
         domain_name = os.path.basename(config_path).replace('.json', '')
         task = PythonOperator(
             task_id=f'scrape_{domain_name}',
-            python_callable=scrape_router,
+            python_callable=bfs_scrape_universal,   # ← fonction unique
             op_kwargs={'config_path': config_path}
         )
         scrape_tasks.append(task)
     
+    # ==================== FICHIER LOCAL ====================
     def ingest_local_file_if_exists():
         from utils.minio_client import upload_bytes, compute_hash
-        import os
         csv_path = '/opt/airflow/data/sample_courses.csv'
         if not os.path.exists(csv_path):
             print(f"Fichier CSV non trouvé : {csv_path}. Ignorer l'ingestion.")
@@ -75,13 +80,19 @@ with DAG('scraping_pipeline', default_args=default_args,
         python_callable=ingest_local_file_if_exists
     )
     
-    start >> task_openalex
+    # ==================== DÉPENDANCES ====================
+    start >> [task_openalex, task_crossref, task_orcid]
     for t in scrape_tasks:
         start >> t
     
-    all_done = DummyOperator(task_id='all_scraping_and_openalex_done')
-    all_scraping_and_openalex = [task_openalex] + scrape_tasks
-    for t in all_scraping_and_openalex:
-        t >> all_done
+    all_api_done = DummyOperator(task_id='all_api_done')
+    [task_openalex, task_crossref, task_orcid] >> all_api_done
     
-    all_done >> task_local_file >> end
+    all_scraping_done = DummyOperator(task_id='all_scraping_done')
+    for t in scrape_tasks:
+        t >> all_scraping_done
+    
+    all_ingestion_done = DummyOperator(task_id='all_ingestion_done')
+    [all_api_done, all_scraping_done] >> all_ingestion_done
+    
+    all_ingestion_done >> task_local_file >> end

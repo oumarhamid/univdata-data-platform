@@ -34,8 +34,8 @@
         "svg",
         "webp"
     ],
-    "max_pages_per_domain": 2000,
-    "use_playwright": true,
+    "max_pages_per_domain": 200,
+    "use_playwright": false,
     "seed_urls": [
         "https://revues.imist.ma/index.php/index/search/authors",
         "https://toubkal.imist.ma/",
