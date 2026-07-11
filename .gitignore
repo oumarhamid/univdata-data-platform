@@ -42,4 +42,4 @@ Thumbs.db
 .idea/
 
 # Playwright cache (si présent localement)
-~/.cache/ms-playwright/
+~/.cache/ms-playwright/"*.jar" 

@@ -245,7 +245,7 @@ services:
 
   # ==================== METABASE ====================
   metabase:
-    image: metabase/metabase:latest
+    build: ./metabase
     container_name: univdata-metabase
     environment:
       MB_DB_TYPE: postgres
@@ -266,19 +266,27 @@ services:
       - data-platform-net
     restart: unless-stopped
 
-  hiveserver2:
-    image: univdata-hive-metastore
-    container_name: univdata-hiveserver2
+  spark-thrift:
+    build: ./spark   # ou apache/spark:3.5.0
+    container_name: univdata-spark-thrift
     depends_on:
+      spark-master:
+        condition: service_started
       hive-metastore:
         condition: service_started
-      postgres:
-        condition: service_healthy
     environment:
-      HIVE_METASTORE_URIS: thrift://hive-metastore:9083
-    ports:
-      - "10000:10000"
-    command: /opt/hive/bin/hive --service hiveserver2 --hiveconf hive.server2.thrift.port=10000 --hiveconf hive.server2.thrift.bind.host=0.0.0.0
+      SPARK_MASTER_HOST: spark-master
+    command: >
+      /opt/spark/sbin/start-thriftserver.sh
+      --master spark://spark-master:7077
+      --conf spark.hadoop.fs.s3a.endpoint=http://minio:9000
+      --conf spark.hadoop.fs.s3a.access.key=minioadmin
+      --conf spark.hadoop.fs.s3a.secret.key=minioadmin
+      --conf spark.hadoop.fs.s3a.path.style.access=true
+      --conf spark.hadoop.hive.metastore.uris=thrift://hive-metastore:9083
+      --driver-memory 512m
+      --executor-memory 512m
+      --packages org.apache.hudi:hudi-spark3-bundle_2.12:0.15.0
     networks:
       - data-platform-net
     restart: unless-stopped

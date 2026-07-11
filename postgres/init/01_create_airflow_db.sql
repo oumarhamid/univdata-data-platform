@@ -1,11 +1,7 @@
-CREATE DATABASE airflow;
-
+-- Création des bases manquantes
 CREATE DATABASE hive_metastore;
-
 CREATE DATABASE metabase;
 
-GRANT ALL PRIVILEGES ON DATABASE airflow TO ${POSTGRES_USER};
-
-GRANT ALL PRIVILEGES ON DATABASE hive_metastore TO ${POSTGRES_USER};
-
-GRANT ALL PRIVILEGES ON DATABASE metabase TO ${POSTGRES_USER};
+-- Attribution des droits à l'utilisateur 'airflow' (qui est créé par défaut par le conteneur)
+GRANT ALL PRIVILEGES ON DATABASE hive_metastore TO airflow;
+GRANT ALL PRIVILEGES ON DATABASE metabase TO airflow;

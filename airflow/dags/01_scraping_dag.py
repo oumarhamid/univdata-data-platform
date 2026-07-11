@@ -9,7 +9,6 @@ from utils.bfs_scraper_universal import bfs_scrape_universal
 
 from utils.openalex_ingest import ingest_openalex
 from utils.crossref_ingest import ingest_crossref
-from utils.orcid_ingest import ingest_orcid
 
 default_args = {
     'owner': 'data-team',
@@ -41,11 +40,7 @@ with DAG('scraping_pipeline', default_args=default_args,
         python_callable=ingest_crossref,
         op_kwargs={'max_works': 2000}
     )
-    task_orcid = PythonOperator(
-        task_id='ingest_orcid',
-        python_callable=ingest_orcid,
-        op_kwargs={'max_records': 1000}
-    )
+    
     
     # ==================== SCRAPING WEB ====================
     scrape_tasks = []
@@ -81,12 +76,12 @@ with DAG('scraping_pipeline', default_args=default_args,
     )
     
     # ==================== DÉPENDANCES ====================
-    start >> [task_openalex, task_crossref, task_orcid]
+    start >> [task_openalex, task_crossref]
     for t in scrape_tasks:
         start >> t
     
     all_api_done = DummyOperator(task_id='all_api_done')
-    [task_openalex, task_crossref, task_orcid] >> all_api_done
+    [task_openalex, task_crossref] >> all_api_done
     
     all_scraping_done = DummyOperator(task_id='all_scraping_done')
     for t in scrape_tasks:
