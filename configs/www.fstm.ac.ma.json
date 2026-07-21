@@ -1,0 +1,34 @@
+{
+    "domain": "www.fstm.ac.ma",
+    "start_url": "https://www.fstm.ac.ma/index.php",
+    "seed_urls": [
+        "https://www.fstm.ac.ma/departements/biologie.php",
+        "https://www.fstm.ac.ma/departements/chimie.php",
+        "https://www.fstm.ac.ma/departements/gpe.php",
+        "https://www.fstm.ac.ma/departements/ge.php",
+        "https://www.fstm.ac.ma/departements/informatique.php",
+        "https://www.fstm.ac.ma/departements/mathematiques.php",
+        "https://www.fstm.ac.ma/departements/physique.php",
+        "https://www.fstm.ac.ma/departements/tec.php",
+        "https://www.fstm.ac.ma/index.php/formations",
+        "https://www.fstm.ac.ma/index.php/recherche"
+    ],
+    "max_depth": 3,
+    "use_playwright": true,
+    "rate_limit_seconds": 1,
+    "respect_robots": true,
+    "user_agent": "UnivDataBot/1.0",
+    "buckets": {
+        "html": "raw-web-html",
+        "documents": "raw-documents",
+        "images": "raw-images",
+        "logs": "raw-logs"
+    },
+    "file_extensions": [
+        "pdf", "xls", "xlsx", "csv", "tsv", "doc", "docx", "ppt", "pptx", "json", "xml", "zip", "rar"
+    ],
+    "image_extensions": [
+        "jpg", "jpeg", "png", "gif", "svg", "webp", "bmp", "ico"
+    ],
+    "max_pages_per_domain": 500
+}

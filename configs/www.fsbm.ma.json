@@ -5,7 +5,7 @@
     "https://www.fsbm.ma/formation",
     "https://www.fsbm.ma/departments"
   ],
-    "max_depth": 3,
+    "max_depth": 2,
     "rate_limit_seconds": 1,
     "use_playwright": true,
     "respect_robots": true,

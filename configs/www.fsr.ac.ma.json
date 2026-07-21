@@ -1,0 +1,28 @@
+{
+    "domain": "www.fsr.ac.ma",
+    "start_url": "https://www.fsr.ac.ma",
+    "seed_urls": [
+        "https://www.fsr.ac.ma/page/membres-du-conseil-et-repr%C3%A9sentants-de-la-facult%C3%A9",
+        "https://www.fsr.ac.ma/content/formation-licence",
+        "https://www.fsr.ac.ma/content/formation-master",
+        "https://www.fsr.ac.ma/content/formations-0"
+    ],
+    "max_depth": 3,
+    "use_playwright": false,
+    "rate_limit_seconds": 1,
+    "respect_robots": true,
+    "user_agent": "UnivDataBot/1.0 (+https://univdata.com/bot)",
+    "buckets": {
+        "html": "raw-web-html",
+        "documents": "raw-documents",
+        "images": "raw-images",
+        "logs": "raw-logs"
+    },
+    "file_extensions": [
+        "pdf", "doc", "docx", "xls", "xlsx", "ppt", "pptx", "odt", "ods", "csv", "json", "xml", "zip"
+    ],
+    "image_extensions": [
+        "jpg", "jpeg", "png", "gif", "svg", "webp", "bmp"
+    ],
+    "max_pages_per_domain": 200
+}

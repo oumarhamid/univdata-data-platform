@@ -13,6 +13,12 @@ services:
   postgres:
     image: postgres:13
     container_name: univdata-postgres
+    deploy:
+      resources:
+        limits:
+          memory: 1G      # au lieu de 512M
+        reservations:
+          memory: 512M
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
@@ -124,7 +130,7 @@ services:
     command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     environment:
       SPARK_WORKER_CORES: 2
-      SPARK_WORKER_MEMORY: 2g
+      SPARK_WORKER_MEMORY: 3g
       SPARK_WORKER_WEBUI_PORT: 8081
       HADOOP_CONF_DIR: /opt/spark/conf
     depends_on:
@@ -197,6 +203,7 @@ services:
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
       AIRFLOW__WEBSERVER__WORKERS: 1
       AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT: 300
+      AIRFLOW__WEBSERVER__WORKER_REFRESH_INTERVAL: 60
       AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT: 300
       AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "True"
       AIRFLOW__CORE__LAZY_LOAD_PROVIDERS: "True"
@@ -219,6 +226,10 @@ services:
   airflow-scheduler:
     build: ./airflow
     container_name: univdata-airflow-scheduler
+    deploy:
+      resources:
+        limits:
+          memory: 1G
     depends_on:
       postgres:
         condition: service_healthy
@@ -227,6 +238,9 @@ services:
     environment:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__SCHEDULER__SCHEDULER_HEALTH_CHECK_THRESHOLD: 60   # secondes (défaut: 30)
+      AIRFLOW__SCHEDULER__JOB_HEARTBEAT_SEC: 20                  # défaut: 5
+      AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL: 60 
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
       AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "True"
       PLAYWRIGHT_BROWSERS_PATH: /opt/playwright
