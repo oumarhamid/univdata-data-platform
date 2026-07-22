@@ -81,19 +81,70 @@ def main():
         sys.exit(1)
     print(f"✅ Base PostgreSQL trouvée (id={db_id})")
 
-    # Définir les requêtes pour les trois tables
+    # Définir les requêtes pour les tables exportées vers PostgreSQL
     queries = {
         # Faculty
         "Total professeurs": "SELECT COUNT(*) as total FROM metabase_faculty_profiles",
         "Professeurs par université": "SELECT university, COUNT(*) as nb FROM metabase_faculty_profiles GROUP BY university ORDER BY nb DESC",
         "Professeurs par département": "SELECT department, COUNT(*) as nb FROM metabase_faculty_profiles WHERE department IS NOT NULL AND department != '' GROUP BY department ORDER BY nb DESC",
+
         # Publications
         "Total publications": "SELECT COUNT(*) as total FROM metabase_publications",
         "Publications par source": "SELECT source_system, COUNT(*) as nb FROM metabase_publications GROUP BY source_system ORDER BY nb DESC",
         "Publications par année": "SELECT EXTRACT(YEAR FROM publication_date) as annee, COUNT(*) as nb FROM metabase_publications WHERE publication_date IS NOT NULL GROUP BY annee ORDER BY annee DESC",
-        # Programs (si la table existe)
+
+        # Programs
         "Total formations": "SELECT COUNT(*) as total FROM metabase_programs",
         "Formations par niveau": "SELECT level, COUNT(*) as nb FROM metabase_programs GROUP BY level ORDER BY nb DESC",
+
+        # Documents PDF
+        "Total documents PDF": "SELECT COUNT(*) as total FROM metabase_documents_catalog",
+
+        "Documents PDF par type": """
+        SELECT document_type, COUNT(*) as nb
+        FROM metabase_documents_catalog
+        GROUP BY document_type
+        ORDER BY nb DESC
+        """,
+
+        "Documents PDF par catégorie": """
+        SELECT document_category, COUNT(*) as nb
+        FROM metabase_documents_catalog
+        GROUP BY document_category
+        ORDER BY nb DESC
+        """,
+
+        "Statut OCR des PDF": """
+        SELECT
+          CASE
+            WHEN needs_ocr = true THEN 'OCR nécessaire'
+            ELSE 'Texte extrait'
+          END AS statut_ocr,
+          COUNT(*) AS nb
+        FROM metabase_documents_catalog
+        GROUP BY needs_ocr
+        """,
+
+        "Score moyen extraction PDF": """
+        SELECT ROUND(AVG(extraction_quality_score)::numeric, 2) AS score_moyen
+        FROM metabase_documents_catalog
+        """,
+
+        "Catalogue des documents PDF": """
+        SELECT
+          file_name,
+          document_type,
+          document_category,
+          title_detected,
+          cycle,
+          semester,
+          needs_ocr,
+          extraction_quality_score,
+          text_length,
+          page_count
+        FROM metabase_documents_catalog
+        ORDER BY extraction_quality_score DESC
+        """,
     }
 
     created = 0
