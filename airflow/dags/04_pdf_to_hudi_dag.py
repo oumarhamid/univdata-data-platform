@@ -26,12 +26,9 @@ with DAG(
 
     spark_submit_cmd = """
     sudo docker exec -u root univdata-spark-master bash -lc 'PDF_MAX_FILES=5 PDF_MAX_PAGES_PER_PDF=3 PDF_MAX_FILE_SIZE_MB=8 PDF_MAX_TEXT_CHARS=12000 /opt/spark/bin/spark-submit \
-      --master spark://spark-master:7077 \
+      --master local[1] \
       --driver-memory 1g \
-      --executor-memory 1536m \
-      --conf spark.executor.cores=1 \
-      --conf spark.cores.max=2 \
-      --conf spark.sql.shuffle.partitions=4 \
+      --conf spark.sql.shuffle.partitions=1 \
       --conf spark.jars.ivy=/tmp/.ivy2 \
       --packages org.apache.hudi:hudi-spark3-bundle_2.12:0.15.0 \
       /opt/spark/jobs/etl_pdf_to_hudi.py'
