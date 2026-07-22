@@ -16,4 +16,8 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sSL https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.3.4/hadoop-aws-3.3.4.jar -o /opt/spark/jars/hadoop-aws.jar && \
     curl -sSL https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.12.262/aws-java-sdk-bundle-1.12.262.jar -o /opt/spark/jars/aws-java-sdk-bundle.jar
 
+
+# Connecteur Elasticsearch Spark (version 8.12.0)
+RUN curl -f -L -o /opt/spark/jars/elasticsearch-spark.jar https://repo1.maven.org/maven2/org/elasticsearch/elasticsearch-spark-30_2.12/8.12.0/elasticsearch-spark-30_2.12-8.12.0.jar
+
 USER spark

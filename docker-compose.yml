@@ -146,7 +146,9 @@ services:
 
   # ==================== ELASTICSEARCH ====================
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.2
+    build:
+      context: ./elasticsearch
+      dockerfile: Dockerfile
     container_name: univdata-elasticsearch
     environment:
       - discovery.type=single-node
@@ -165,6 +167,22 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
+    restart: unless-stopped
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.10.2
+    container_name: univdata-kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - SERVER_NAME=kibana
+      - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    ports:
+      - "5601:5601"
+    networks:
+      - data-platform-net
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
     restart: unless-stopped
 
   # ==================== AIRFLOW ====================
