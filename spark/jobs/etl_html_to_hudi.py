@@ -93,15 +93,23 @@ def clean_html_noise(raw_html):
     return str(soup)
 
 def fix_text_encoding(text):
-    """Répare les problèmes d'encodage (Mojibake) et les entités HTML."""
+    """Répare les problèmes d'encodage (Mojibake) et les entités HTML.
+    Boucle jusqu'à stabilisation : certains fichiers sont doublement corrompus
+    ("Génie" -> "GÃ©nie" -> "GÃƒÂ©nie"), une seule passe latin1->utf8 ne
+    suffit pas dans ce cas. 3 passes max par sécurité."""
     if not text:
         return text
     text = html.unescape(text)
-    try:
-        if 'Ã' in text or 'â' in text or 'Â' in text:
-            text = text.encode('latin1').decode('utf-8')
-    except (UnicodeEncodeError, UnicodeDecodeError):
-        pass
+    for _ in range(3):
+        if not ('Ã' in text or 'â€' in text or 'Â' in text):
+            break
+        try:
+            fixed = text.encode('latin1').decode('utf-8')
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            break
+        if fixed == text:
+            break
+        text = fixed
     return text.strip()
 
 # ============================================================
@@ -214,7 +222,7 @@ def extract_faculty_from_html(html_content, source_url, domain):
                 dept = dept_match.group(1).strip()
             add_faculty(m.group(1).strip(), title, dept)
 
-    # 3. Tableaux (amélioré)
+    # 3. Tableaux (amélioré : gère Nom+Prénom séparés + décalage de colonnes dû aux rowspan)
     for table in soup.find_all('table'):
         rows = table.find_all('tr')
         if len(rows) < 2:
@@ -223,32 +231,81 @@ def extract_faculty_from_html(html_content, source_url, domain):
         # Détection des en-têtes (première ligne)
         header_cells = rows[0].find_all(['th', 'td'])
         headers = [fix_text_encoding(c.get_text(strip=True)).lower() for c in header_cells]
+        n_headers = len(headers)
 
-        # Chercher les indices des colonnes utiles
-        name_col = -1
+        # Colonnes "nom" et "prénom" cherchées SÉPARÉMENT : beaucoup de sites
+        # (ex: FSR) utilisent 2 colonnes distinctes ("Nom" | "Prénom") au lieu
+        # d'une seule "Nom complet". Les fusionner plutôt que de garder
+        # seulement la dernière colonne détectée (bug qui ne captait que le
+        # prénom seul, rejeté ensuite par la validation "≥2 mots").
+        combined_col = -1   # une seule colonne "Nom et Prénom" / "Noms et Prénoms"
+        nom_col = -1         # colonne "Nom" (famille) seule
+        prenom_col = -1      # colonne "Prénom" seule
         coord_col = -1
         email_col = -1
         for i, h in enumerate(headers):
-            if any(k in h for k in ['nom', 'prenom', 'noms', 'prénoms', 'etudiant', 'membre']):
-                name_col = i
+            if re.search(r'noms?\s*(?:et|&|/)\s*pr[ée]noms?', h):
+                combined_col = i
+            elif re.search(r'\bpr[ée]noms?\b', h):
+                prenom_col = i
+            elif re.search(r'\bnoms?\b', h) or 'etudiant' in h or 'membre' in h:
+                nom_col = i
             if any(k in h for k in ['coordon', 'responsable', 'chef', 'prof']):
                 coord_col = i
             if 'email' in h:
                 email_col = i
 
-        # Si une colonne "nom" est trouvée, on l'utilise en priorité
-        if name_col >= 0:
+        has_separate_columns = nom_col >= 0 and prenom_col >= 0 and nom_col != prenom_col
+        name_col = combined_col if combined_col >= 0 else nom_col
+
+        def looks_like_email(s):
+            return '@' in s
+
+        def get_cell(cells, idx):
+            """Récupère cells[idx] en corrigeant le décalage introduit par un
+            rowspan (une ligne avec moins de cellules que l'en-tête = une ou
+            plusieurs colonnes de tête ont été fusionnées verticalement sur
+            cette ligne). On recale alors l'index depuis la fin de la ligne."""
+            if idx < 0:
+                return None
+            if len(cells) == n_headers and idx < len(cells):
+                return cells[idx]
+            # ligne plus courte que l'en-tête -> réaligner depuis la fin
+            shift = n_headers - len(cells)
+            adj_idx = idx - shift
+            if 0 <= adj_idx < len(cells):
+                return cells[adj_idx]
+            return None
+
+        if has_separate_columns:
             for row in rows[1:]:
                 cells = row.find_all(['td', 'th'])
-                if len(cells) > name_col:
-                    candidate = fix_text_encoding(cells[name_col].get_text(strip=True))
-                    # Nettoyer les grades
-                    candidate = re.sub(r'\b(PES|PH|PESA|MCF|Professeur|Maitre|Docteur|Pr\.|Prof\.|Dr\.)\b', '', candidate, flags=re.I)
-                    candidate = re.sub(r'\s+', ' ', candidate).strip()
-                    if candidate and len(candidate.split()) >= 2:
-                        add_faculty(candidate, "Enseignant", "")
+                nom_cell = get_cell(cells, nom_col)
+                prenom_cell = get_cell(cells, prenom_col)
+                if nom_cell is None or prenom_cell is None:
+                    continue
+                nom = fix_text_encoding(nom_cell.get_text(strip=True))
+                prenom = fix_text_encoding(prenom_cell.get_text(strip=True))
+                if not nom or not prenom or looks_like_email(nom) or looks_like_email(prenom):
+                    continue
+                full_name = f"{prenom} {nom}"
+                add_faculty(full_name, "Enseignant", "")
+        elif name_col >= 0:
+            for row in rows[1:]:
+                cells = row.find_all(['td', 'th'])
+                cell = get_cell(cells, name_col)
+                if cell is None:
+                    continue
+                candidate = fix_text_encoding(cell.get_text(strip=True))
+                if looks_like_email(candidate):
+                    continue
+                # Nettoyer les grades
+                candidate = re.sub(r'\b(PES|PH|PESA|MCF|Professeur|Maitre|Docteur|Pr\.|Prof\.|Dr\.)\b', '', candidate, flags=re.I)
+                candidate = re.sub(r'\s+', ' ', candidate).strip()
+                if candidate and len(candidate.split()) >= 2:
+                    add_faculty(candidate, "Enseignant", "")
         else:
-            # Fallback : si pas de colonne nom, on scanne toutes les cellules de chaque ligne
+            # Fallback : si pas de colonne nom identifiable, on scanne toutes les cellules de chaque ligne
             for row in rows[1:]:
                 cells = row.find_all(['td', 'th'])
                 for cell in cells:
@@ -266,11 +323,13 @@ def extract_faculty_from_html(html_content, source_url, domain):
         if coord_col >= 0 and coord_col != name_col:
             for row in rows[1:]:
                 cells = row.find_all(['td', 'th'])
-                if len(cells) > coord_col:
-                    coord_text = fix_text_encoding(cells[coord_col].get_text(strip=True))
-                    m = re.search(r'(?:Pr\.|Prof\.|Dr\.|M\.|Mme)\s+([A-ZÀ-ÖØ-Þ][a-zà-öø-ÿ]+(?:\s+[A-ZÀ-ÖØ-Þ][a-zà-öø-ÿ]+){1,3})', coord_text)
-                    if m:
-                        add_faculty(m.group(1).strip(), "Professeur", "")
+                coord_cell = get_cell(cells, coord_col)
+                if coord_cell is None:
+                    continue
+                coord_text = fix_text_encoding(coord_cell.get_text(strip=True))
+                m = re.search(r'(?:Pr\.|Prof\.|Dr\.|M\.|Mme)\s+([A-ZÀ-ÖØ-Þ][a-zà-öø-ÿ]+(?:\s+[A-ZÀ-ÖØ-Þ][a-zà-öø-ÿ]+){1,3})', coord_text)
+                if m:
+                    add_faculty(m.group(1).strip(), "Professeur", "")
 
     # 4. Fallback regex (si moins de 5 résultats)
     if len(faculty_list) < 5:
@@ -367,6 +426,28 @@ def extract_programs_from_html(html_content, source_url, domain):
             return False
             
         if re.match(r'^(offre|liste|contact|accueil|présentation|menu|short biography)$', name_lower):
+            return False
+
+        # Rejette les entrées qui ne sont qu'un nom de niveau générique
+        # ("Master", "Cycle Master", "Cycle Licence"...) provenant d'un titre
+        # de section plutôt que d'un vrai programme.
+        if re.fullmatch(r'(cycle\s+)?(licences?|masters?|doctorats?|dut|deust|deug)s?', name_lower):
+            return False
+
+        # Rejette les fragments restants après le retrait d'un préfixe de niveau
+        # ("Formation initiale" -> "initiale", "Formation continue" -> "continue") :
+        # un seul mot, pas un acronyme (donc pas tout en majuscules), c'est
+        # presque toujours un débris de titre d'onglet plutôt qu'un programme.
+        if len(words) == 1 and not name.isupper():
+            return False
+
+        # Autres débris connus de libellés d'onglets ("Licences nouvelle
+        # génération" -> "nouvelle génération" après retrait du préfixe).
+        FRAGMENT_LEFTOVERS = {
+            'nouvelle génération', 'nouvelle generation', 'initiale', 'continue',
+            'professionnelle', 'professionnelles', 'fondamentale', 'fondamentales',
+        }
+        if name_lower in FRAGMENT_LEFTOVERS:
             return False
 
         if re.search(r'\b(Pr|Prof|Dr|M|Mme|Mlle)\b\.?', name, re.I):

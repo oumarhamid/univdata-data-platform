@@ -7,21 +7,26 @@ from .minio_client import upload_bytes, compute_hash
 def ingest_openalex(bucket_raw_json="raw-json", max_works=5000, **context):
     """
     Ingère les données OpenAlex par plages hebdomadaires et curseur.
-    Partitionnement par date (year/month/day) pour éviter les fichiers trop gros.
+    Partitionnement par date (year/month/day) basé sur la date d'extraction (comme Crossref).
     Limite le nombre total d'œuvres récupérées à `max_works`.
     """
     base_url = "https://api.openalex.org/works"
-    per_page = 50                     # Moins de résultats par page → fichiers plus petits
+    per_page = 50
     select_fields = "id,title,publication_date,authorships,institutions,concepts,doi"
     
     # Période à récupérer (exemple : juin 2026)
     start_date = datetime(2026, 6, 1)
     end_date   = datetime(2026, 6, 30)
     
+    # Date d'extraction (utilisée pour le partitionnement)
+    now = datetime.now()
+    year = now.year
+    month = now.month
+    day = now.day
+    
     total_works = 0
     all_done = False
     
-    # Découpage par semaine
     current_start = start_date
     while current_start <= end_date and not all_done:
         current_end = min(current_start + timedelta(days=6), end_date)
@@ -48,15 +53,12 @@ def ingest_openalex(bucket_raw_json="raw-json", max_works=5000, **context):
             if not results:
                 break
             
-            # Sauvegarder cette page (même si on dépasse la limite, on sauvegarde partiellement)
-            year = current_start.year
-            month = current_start.month
-            day = current_start.day
+            # Partitionnement par date d'extraction (comme Crossref)
             object_path = f"openalex/year={year}/month={month:02d}/day={day:02d}/works_page_{page_counter:04d}.json"
             
             metadata = {
                 "source_system": "openalex",
-                "crawl_timestamp": datetime.now().isoformat(),
+                "crawl_timestamp": now.isoformat(),
                 "filter": filter_query,
                 "page": page_counter,
                 "content_hash": compute_hash(json.dumps(data, indent=2).encode())
@@ -66,12 +68,10 @@ def ingest_openalex(bucket_raw_json="raw-json", max_works=5000, **context):
             total_works += len(results)
             print(f"Page {page_counter} de la semaine {current_start.date()} : {len(results)} œuvres → total {total_works}/{max_works}")
             
-            # Vérifier si la limite est atteinte ou dépassée
             if total_works >= max_works:
                 all_done = True
                 break
             
-            # Passage à la page suivante
             if 'meta' in data and 'next_cursor' in data['meta'] and data['meta']['next_cursor']:
                 params['cursor'] = data['meta']['next_cursor']
                 page_counter += 1
