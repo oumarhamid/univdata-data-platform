@@ -44,6 +44,44 @@ def get_database_id_by_name(token, name):
             return db["id"]
     return None
 
+def get_existing_cards(token):
+    """Liste TOUTES les questions existantes (non déjà archivées), y compris
+    les doublons et les questions orphelines qui ne sont plus dans la liste
+    `queries` actuelle (ex: anciennes questions supprimées du script mais
+    jamais nettoyées dans Metabase)."""
+    headers = {"X-Metabase-Session": token}
+    resp = requests.get(f"{METABASE_URL}/api/card", headers=headers)
+    cards = []
+    if resp.status_code == 200:
+        data = resp.json()
+        items = data if isinstance(data, list) else data.get("data", [])
+        for item in items:
+            if isinstance(item, dict) and not item.get("archived"):
+                cards.append({"id": item.get("id"), "name": item.get("name")})
+    return cards
+
+
+def archive_card(token, card_id):
+    headers = {"X-Metabase-Session": token}
+    requests.put(f"{METABASE_URL}/api/card/{card_id}", json={"archived": True}, headers=headers)
+
+
+def archive_all_existing_cards(token):
+    """Archive TOUTES les questions existantes avant de recréer le tableau
+    de bord depuis zéro : plus de doublons accumulés d'un run cassé à
+    l'autre, plus de questions orphelines référençant des colonnes qui
+    n'existent plus dans le schéma actuel."""
+    cards = get_existing_cards(token)
+    if not cards:
+        print("ℹ️  Aucune question existante à nettoyer.")
+        return
+    print(f"🧹 Nettoyage : archivage de {len(cards)} question(s) existante(s)...")
+    for card in cards:
+        archive_card(token, card["id"])
+        print(f"   🗑️  Archivée : '{card['name']}' (id={card['id']})")
+    print("✅ Nettoyage terminé.")
+
+
 def create_question(token, db_id, name, query):
     headers = {"X-Metabase-Session": token}
     card_data = {
@@ -107,13 +145,6 @@ def main():
         ORDER BY nb DESC
         """,
 
-        "Documents PDF par catégorie": """
-        SELECT document_category, COUNT(*) as nb
-        FROM metabase_documents_catalog
-        GROUP BY document_category
-        ORDER BY nb DESC
-        """,
-
         "Statut OCR des PDF": """
         SELECT
           CASE
@@ -133,21 +164,47 @@ def main():
         "Catalogue des documents PDF": """
         SELECT
           file_name,
+          document_name,
           document_type,
-          document_category,
-          title_detected,
-          cycle,
+          program_name,
+          academic_year,
           semester,
           needs_ocr,
-          extraction_quality_score,
-          text_length,
-          page_count
+          extraction_quality_score
         FROM metabase_documents_catalog
         ORDER BY extraction_quality_score DESC
+        """,
+
+        # --- 3 nouveaux calculs ---
+
+        "Professeurs par titre": """
+        SELECT title, COUNT(*) as nb
+        FROM metabase_faculty_profiles
+        WHERE title IS NOT NULL AND title != ''
+        GROUP BY title
+        ORDER BY nb DESC
+        """,
+
+        "Taux de documents nécessitant OCR (%)": """
+        SELECT
+          ROUND(
+            100.0 * SUM(CASE WHEN needs_ocr = true THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0),
+            1
+          ) AS pct_needs_ocr
+        FROM metabase_documents_catalog
+        """,
+
+        "Documents par formation détectée": """
+        SELECT program_name, COUNT(*) as nb
+        FROM metabase_documents_catalog
+        WHERE program_name IS NOT NULL AND program_name != ''
+        GROUP BY program_name
+        ORDER BY nb DESC
         """,
     }
 
     created = 0
+    archive_all_existing_cards(token)
     for name, q in queries.items():
         cid = create_question(token, db_id, name, q)
         if cid:

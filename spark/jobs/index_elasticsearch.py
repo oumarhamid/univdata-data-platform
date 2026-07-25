@@ -18,7 +18,7 @@ import time
 ES_HOST = "http://elasticsearch:9200"
 INDEX_NAME = "university_docs"
 
-TABLES = ["faculty_profiles", "publications", "programs"]
+TABLES = ["faculty_profiles", "publications", "programs", "documents_catalog"]
 
 # ======================= FONCTIONS =======================
 

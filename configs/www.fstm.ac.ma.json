@@ -30,5 +30,5 @@
     "image_extensions": [
         "jpg", "jpeg", "png", "gif", "svg", "webp", "bmp", "ico"
     ],
-    "max_pages_per_domain": 500
+    "max_pages_per_domain": 250
 }
