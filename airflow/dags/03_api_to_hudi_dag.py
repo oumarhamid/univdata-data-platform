@@ -12,7 +12,7 @@ default_args = {
     'execution_timeout': timedelta(minutes=60),
 }
 
-with DAG('api_to_hudi_pipeline',
+with DAG('03_api_to_hudi_pipeline',
          default_args=default_args,
          schedule_interval=None,  # Désactivé pour éviter les exécutions automatiques "fantômes"
          catchup=False,

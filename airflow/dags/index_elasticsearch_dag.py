@@ -12,7 +12,7 @@ default_args = {
     'execution_timeout': timedelta(minutes=30),  # ⬅️ réduit à 30 min pour éviter les timeouts trop longs
 }
 
-with DAG('index_elasticsearch_pipeline',
+with DAG('06_index_elasticsearch_pipeline',
          default_args=default_args,
          schedule_interval=None,
          catchup=False,
