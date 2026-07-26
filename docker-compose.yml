@@ -96,7 +96,7 @@ services:
       postgres:
         condition: service_healthy
     volumes:
-      - ./hive/lib/hudi-spark3-bundle_2.12-0.15.0.jar:/opt/hive/lib/hudi-spark3-bundle_2.12-0.15.0.jar
+     # - ./hive/lib/hudi-spark3-bundle_2.12-0.15.0.jar:/opt/hive/lib/hudi-spark3-bundle_2.12-0.15.0.jar
       - ./hive/conf/core-site.xml:/opt/hive/conf/core-site.xml
     ports:
       - "9083:9083"
