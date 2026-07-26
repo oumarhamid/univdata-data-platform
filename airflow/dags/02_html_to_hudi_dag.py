@@ -12,7 +12,7 @@ default_args = {
     'execution_timeout': timedelta(minutes=180),
 }
 
-with DAG('html_to_hudi_pipeline',
+with DAG('02_html_to_hudi_pipeline',
          default_args=default_args,
          schedule_interval=None,
          catchup=False,

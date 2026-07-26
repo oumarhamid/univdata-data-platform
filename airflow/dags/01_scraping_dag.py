@@ -23,7 +23,7 @@ CONFIG_DIR = '/opt/airflow/configs'
 # Récupération des fichiers de configuration
 config_files = glob.glob(os.path.join(CONFIG_DIR, '*.json'))
 
-with DAG('scraping_pipeline', default_args=default_args,
+with DAG('01_scraping_pipeline', default_args=default_args,
          schedule_interval='@weekly', catchup=False) as dag:
     
     start = DummyOperator(task_id='start')

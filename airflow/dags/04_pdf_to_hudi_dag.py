@@ -10,7 +10,7 @@ default_args = {
 }
 
 with DAG(
-    dag_id="pdf_to_hudi_pipeline_optimized",
+    dag_id="04_pdf_to_hudi_pipeline_optimized",
     default_args=default_args,
     description="Parse PDF documents from raw-documents and write documents_catalog to Hudi (optimized)",
     start_date=datetime(2026, 1, 1),

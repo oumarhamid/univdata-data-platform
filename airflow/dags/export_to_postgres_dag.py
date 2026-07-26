@@ -12,7 +12,7 @@ default_args = {
     'execution_timeout': timedelta(minutes=180),
 }
 
-with DAG('export_to_postgres_pipeline',
+with DAG('05_export_to_postgres_pipeline',
          default_args=default_args,
          schedule_interval=None,          # ou None si déclenché manuellement
          catchup=False,
