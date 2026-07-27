@@ -1,4 +1,4 @@
-# University DATA — Plateforme de données universitaire
+# UnivData — Plateforme de données universitaire
 
 Pipeline complet de collecte, transformation et exposition des données publiques des universités marocaines : sites de facultés, publications scientifiques (OpenAlex, Crossref) et documents PDF, jusqu'à un dashboard BI et un moteur de recherche.
 
