@@ -314,29 +314,3 @@ docker compose ps
 docker stats --no-stream --format "table {{.Name}}\t{{.MemUsage}}\t{{.CPUPerc}}"
 docker logs univdata-spark-master --tail 100
 ```
-
-## Démo
-
-Script de démo complet (15 minutes, minutage détaillé) disponible dans `demo_script.md` :
-
-1. **00:00–02:00** — Présentation du problème
-2. **02:00–04:00** — Architecture et orchestration (Airflow)
-3. **04:00–06:00** — Données brutes (MinIO)
-4. **06:00–09:00** — Transformation Spark → Hive
-5. **09:00–12:00** — Dashboard Metabase
-6. **12:00–14:00** — Recherche Elasticsearch
-7. **14:00–15:00** — Conclusion et perspectives
-
-**Commandes de secours en cas de blocage pendant la démo :**
-```bash
-docker compose restart spark-master
-docker compose restart elasticsearch
-docker compose restart airflow-webserver
-```
-
-## Documentation complémentaire
-
-- `architecture.md` — diagramme Mermaid complet, schémas de tables, infrastructure Docker détaillée
-- `pipeline_run_instructions.md` — commandes `spark-submit` exactes de chaque DAG
-- `runbook.md` — procédures run/monitor/recover complètes
-- `demo_script.md` — script de démonstration minuté
