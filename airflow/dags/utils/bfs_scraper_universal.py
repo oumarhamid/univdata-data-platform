@@ -1,3 +1,4 @@
+
 import json
 import requests
 import time
@@ -15,18 +16,37 @@ try:
 except ImportError:
     PLAYWRIGHT_AVAILABLE = False
 
+
 def load_config(config_path):
     with open(config_path, 'r') as f:
         return json.load(f)
 
+
 def to_ascii_metadata(value: str) -> str:
     return quote(value, safe='/:?=&')
+
+
+def save_scraping_error(logs_bucket, url, depth, error_message):
+    """Enregistre une erreur de collecte sans masquer l'erreur initiale."""
+    try:
+        error_meta = {
+            "source_url": to_ascii_metadata(url),
+            "depth": depth,
+            "error": to_ascii_metadata(error_message),
+            "crawl_timestamp": datetime.now().isoformat(),
+        }
+        object_path = f"errors/{hashlib.md5(url.encode()).hexdigest()}.txt"
+        upload_bytes(logs_bucket, object_path, error_message.encode('utf-8'), error_meta)
+    except Exception as log_error:
+        print(f"[WARN] Journal MinIO non enregistré pour {url}: {log_error}")
+
 
 def is_internal(url, domain):
     netloc = urlparse(url).netloc.lower()
     domain_clean = domain.lower().replace('www.', '')
     netloc_clean = netloc.replace('www.', '')
     return netloc_clean == domain_clean
+
 
 def get_file_extension(url, content_type):
     path = urlparse(url).path
@@ -37,6 +57,7 @@ def get_file_extension(url, content_type):
     if '/' in content_type:
         return content_type.split('/')[-1].split(';')[0]
     return 'bin'
+
 
 def extract_links_from_html(html, base_url):
     soup = BeautifulSoup(html, 'html.parser')
@@ -54,6 +75,7 @@ def extract_links_from_html(html, base_url):
                         links.add(full_url)
     return links
 
+
 def sanitize_filename(url: str) -> str:
     """Transforme une URL en nom de fichier valide (sans /, ?, =, etc.)"""
     # Supprime le protocole
@@ -68,6 +90,7 @@ def sanitize_filename(url: str) -> str:
     if len(safe) > 200:
         safe = safe[:200]
     return safe + '.html'
+
 
 def fetch_with_playwright(url, user_agent, timeout=60000, wait_for_selector=None):
     with sync_playwright() as p:
@@ -84,10 +107,12 @@ def fetch_with_playwright(url, user_agent, timeout=60000, wait_for_selector=None
         browser.close()
         return html, 'text/html', 200
 
+
 def fetch_with_requests(url, user_agent, timeout=30):
     resp = requests.get(url, headers={'User-Agent': user_agent}, timeout=timeout)
     resp.raise_for_status()
     return resp.content, resp.headers.get('Content-Type', '').lower(), resp.status_code
+
 
 def bfs_scrape_universal(config_path, **context):
     config = load_config(config_path)
@@ -148,8 +173,7 @@ def bfs_scrape_universal(config_path, **context):
                 object_name = f"{domain}/{time_prefix}/{'images' if ext in image_extensions else 'files'}/{hashlib.md5(url.encode()).hexdigest()}.{ext}"
             except Exception as e:
                 print(f"[ERROR] Échec fichier {url}: {e}")
-                error_meta = {"source_url": to_ascii_metadata(url), "depth": depth, "error": to_ascii_metadata(str(e)), "crawl_timestamp": datetime.now().isoformat()}
-                upload_bytes(logs_bucket, f"errors/{hashlib.md5(url.encode()).hexdigest()}.txt", str(e).encode(), error_meta)
+                save_scraping_error(logs_bucket, url, depth, str(e))
                 continue
         else:
             # Page HTML
@@ -178,8 +202,7 @@ def bfs_scrape_universal(config_path, **context):
                     print(f"[ERROR] Échec requests pour {url}: {e}")
 
             if not success:
-                error_meta = {"source_url": to_ascii_metadata(url), "depth": depth, "error": "All methods failed", "crawl_timestamp": datetime.now().isoformat()}
-                upload_bytes(logs_bucket, f"errors/{hashlib.md5(url.encode()).hexdigest()}.txt", b"All fetch methods failed", error_meta)
+                save_scraping_error(logs_bucket, url, depth, "All methods failed")
                 continue
 
             # Vérifier la taille minimale (ignorer les fichiers trop petits)
